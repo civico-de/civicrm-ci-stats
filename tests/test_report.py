@@ -1,4 +1,5 @@
 import csv
+import re
 import subprocess
 import sys
 import tempfile
@@ -11,7 +12,6 @@ import report
 from tests import simulate
 
 STEP = simulate.START + timedelta(days=20)
-TODAY = (simulate.START + timedelta(days=30)).date()
 MERGE = {"number": "37835", "merged_at": STEP.strftime("%Y-%m-%dT%H:%M:%SZ"), "title": "<b>Reuse</b> container"}
 
 
@@ -19,9 +19,35 @@ def effect(suite, node, moment, pr):
     return 0.68 if moment >= STEP and "karma" not in suite else 1
 
 
+def overview(jobs, merges, runs):
+    return report.render_site(jobs, merges, runs)["index.html"]
+
+
 class Render(unittest.TestCase):
+    def test_every_month_gets_a_page_with_its_own_change_and_daily_points(self):
+        site = report.render_site(simulate.jobs(1, days=130, effect=effect), [MERGE], [])
+        month = STEP.strftime("%Y-%m")
+        self.assertIn(f"{month}.html", site)
+        self.assertIn("% faster", site[f"{month}.html"])
+        self.assertIn("median per day and host", site[f"{month}.html"])
+        other = next(name for name in site if name not in ("index.html", f"{month}.html"))
+        self.assertNotIn("% faster", site[other])
+        self.assertIn(f'<a href="{month}.html" aria-current="page">', site[f"{month}.html"])
+        self.assertIn('<a href="index.html" aria-current="page">', site["index.html"])
+
+    def test_overview_limits_the_change_list_and_points_to_the_months(self):
+        jobs, changes = [], [{"at": STEP}] * 3
+        original = report.CHANGES_ON_OVERVIEW, report.detect.find_changes, report.change_html
+        self.addCleanup(lambda: (setattr(report, "CHANGES_ON_OVERVIEW", original[0]), setattr(report.detect, "find_changes", original[1]), setattr(report, "change_html", original[2])))
+        report.CHANGES_ON_OVERVIEW = 2
+        report.detect.find_changes = lambda *_: changes
+        report.change_html = lambda change: "<p>one change</p>"
+        page = overview(jobs, [], [])
+        self.assertEqual(page.count("one change"), 2)
+        self.assertIn("1 older changes", page)
+
     def test_change_is_listed_and_title_escaped(self):
-        page = report.render(simulate.jobs(1, effect=effect), [MERGE], [{"at": "2026-10-01T04:00:00+00:00"}], TODAY)
+        page = overview(simulate.jobs(1, effect=effect), [MERGE], [{"at": "2026-10-01T04:00:00+00:00"}])
         self.assertRegex(page, r"3[0-4]% faster")
         self.assertIn("&lt;b&gt;Reuse&lt;/b&gt;", page)
         self.assertNotIn("<b>Reuse</b>", page)
@@ -30,11 +56,24 @@ class Render(unittest.TestCase):
         self.assertNotIn("Likely host load", page)
 
     def test_healthy_data_lists_nothing(self):
-        page = report.render(simulate.jobs(2), [], [], TODAY)
+        page = overview(simulate.jobs(2), [], [])
         self.assertIn("No lasting change detected", page)
 
+    def test_long_history_is_charted_per_week_and_kept_whole(self):
+        short, long = overview(simulate.jobs(4, days=30), [], []), overview(simulate.jobs(4, days=130), [], [])
+        self.assertIn("median per day and host", short)
+        self.assertIn("median per week and host", long)
+        self.assertIn((simulate.START.date() - timedelta(days=simulate.START.weekday())).isoformat() + " ·", long)
+
+    def test_first_week_stays_inside_the_chart_when_the_history_starts_midweek(self):
+        monday = (simulate.START + timedelta(days=7 - simulate.START.weekday())).date()
+        friday = (monday + timedelta(days=4)).isoformat()
+        page = overview([job for job in simulate.jobs(4, days=140) if job["started"][:10] >= friday], [], [])
+        self.assertIn("median per week", page)
+        self.assertGreaterEqual(min(float(value) for value in re.findall(r'cx="([\d.-]+)"', page)), report.LEFT)
+
     def test_empty_data_renders(self):
-        page = report.render([], [], [], TODAY)
+        page = overview([], [], [])
         self.assertIn("No lasting change detected", page)
         self.assertIn("never", page)
 
@@ -52,15 +91,16 @@ class Render(unittest.TestCase):
     def test_cli_writes_the_page(self):
         with tempfile.TemporaryDirectory() as temp:
             data = Path(temp) / "data"
-            data.mkdir()
+            (data / "jobs").mkdir(parents=True)
             rows = simulate.jobs(3, days=3)
-            with (data / "jobs.csv").open("w", newline="") as handle:
+            with (data / "jobs" / "1.csv").open("w", newline="") as handle:
                 writer = csv.DictWriter(handle, list(rows[0]))
                 writer.writeheader()
                 writer.writerows(rows)
-            out = Path(temp) / "site" / "index.html"
+            out = Path(temp) / "site"
             subprocess.run([sys.executable, str(ROOT / "report.py"), "--data", str(data), "--out", str(out)], check=True)
-            self.assertIn("CiviCRM CI Stats", out.read_text())
+            self.assertIn("CiviCRM CI Stats", (out / "index.html").read_text())
+            self.assertEqual(len(list(out.glob("*.html"))), 1 + len({row["started"][:7] for row in rows if row["started"]}))
 
 
 if __name__ == "__main__":

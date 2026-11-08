@@ -5,8 +5,16 @@ on:
   workflow_dispatch:
     inputs:
       start_id:
-        description: First batch id, required until data/cursor.txt exists
+        description: First batch id, required until data/cursor.txt exists; with back, the id to walk down from
         required: false
+      back:
+        description: Collect older batches below the oldest known one
+        type: boolean
+        default: false
+      workers:
+        description: Parallel task requests, for backfills
+        required: false
+        default: "1"
       max_batches:
         description: Batches per run
         required: false
@@ -18,7 +26,7 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     # 60 batches take about 35 minutes; a run that times out writes nothing.
-    timeout-minutes: 55
+    timeout-minutes: ${{ inputs.back && 350 || 55 }}
     steps:
       - uses: actions/checkout@v6
       - name: Collect
@@ -26,8 +34,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           START_ID: ${{ inputs.start_id }}
           MAX_BATCHES: ${{ inputs.max_batches }}
+          BACK: ${{ inputs.back }}
+          WORKERS: ${{ inputs.workers }}
         run: |
-          args=(--max-batches "${MAX_BATCHES:-60}")
+          args=(--max-batches "${MAX_BATCHES:-60}" --workers "${WORKERS:-1}")
+          if [ "$BACK" = "true" ]; then args+=(--back); fi
           if [ -n "$START_ID" ]; then args+=(--start-id "$START_ID"); fi
           python3 collect.py "${args[@]}"
       - name: Render

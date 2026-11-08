@@ -21,7 +21,7 @@ for code speed. Measuring CiviCRM's own speed needs a benchmark on fixed hardwar
 |---|---|
 | `collect.py` | Reads finished batches from Duderino and merged PRs from GitHub, appends to `data/` |
 | `detect.py` | Finds lasting steps across suites and hosts |
-| `report.py` | Renders `docs/index.html` |
+| `report.py` | Renders the pages in `docs/`: an overview of the whole history, and one page per month with daily values |
 | `.github/workflows/collect.yml` | Runs all of it hourly and commits new results |
 
 Everything uses the Python standard library. There is no build step.
@@ -30,16 +30,16 @@ Everything uses the Python standard library. There is no build step.
 
 | File | Content |
 |---|---|
-| `data/jobs.csv` | One row per job: batch, PR, build type, PHP profile, suite, host, image, timestamps, `duration`, wall time, test counts |
+| `data/jobs/YYYY-MM.csv` | One row per job, one file per month: batch, PR, build type, PHP profile, suite, host, image, timestamps, `duration`, wall time, test counts |
 | `data/merges.csv` | Merged civicrm-core PRs against master: number, time, title |
 | `data/runs.csv` | One row per collector run with its counters |
-| `data/cursor.txt` | Last batch id that is fully handled |
+| `data/cursor.txt` | Last batch id that is fully handled going forward |
 
 `duration` is the time Duderino reports for the job and is empty for failed jobs.
 `wall` is `completed` minus `started` and includes setup. Individual test names and
 timings are not collected, because the Jenkins reports need a login.
 
-Batch types come from the all-jobs page and `data/jobs.csv`. A type that appears in
+Batch types come from the all-jobs page and `data/jobs/`. A type that appears in
 neither is skipped, which only understates the load chart.
 
 A job can be retried after it was collected. The stored row then shows the earlier
@@ -86,6 +86,22 @@ behind the cursor and reads only batches it does not have, up to `--max-batches`
 of the workflow that fails or never starts loses nothing, because the next one continues
 from the same place. A run without new batches writes nothing and creates no commit. A
 batch with no activity for 3 days is saved as far as it got and counted as `abandoned`.
+
+## Going further back
+
+`--back` collects older batches, walking down from the oldest one in `data/`. Run it again
+to continue from where the last walk ended. It stops at `--max-batches`, or after
+`--max-gap` missing ids in a row, which is how the start of the available history shows.
+To continue below a larger gap, pass `--start-id` with an id below it. A page that fails
+ends the walk, keeps what was collected so far and records the reason in `data/runs.csv`.
+
+```sh
+gh workflow run collect -f back=true -f max_batches=500 -f workers=4
+```
+
+Going back is always started by hand, and the hourly schedule only moves forward. GitHub
+keeps one waiting run per workflow, so check that a walk has started; a waiting walk can
+be replaced by the next hourly run.
 
 By default the collector makes one request at a time and pauses for a second after each.
 `--workers N` fetches the job pages of a batch in parallel, for one-off backfills. If a

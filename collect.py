@@ -10,7 +10,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
-from collections import Counter
+from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -20,7 +20,8 @@ PULLS = "https://api.github.com/repos/civicrm/civicrm-core/pulls"
 USER_AGENT = "civicrm-ci-stats"
 PAUSE_SECONDS = 1.0
 OPEN_BATCH_MAX_AGE = timedelta(days=3)
-MAX_PULL_PAGES = 30
+MAX_PULL_PAGES = 400
+MAX_BACK_GAP = 300  # missing ids in a row that end a walk into the past
 PARAMS = ("_job", "CIVIVER", "BLDTYPE", "BKPROF", "SUITE", "PATCH", "ORNERY")
 
 JOB_FIELDS = [
@@ -29,7 +30,7 @@ JOB_FIELDS = [
     "duration", "wall", "passed", "failed", "skipped",
 ]
 MERGE_FIELDS = ["number", "merged_at", "title"]
-RUN_FIELDS = ["at", "first_id", "last_id", "batches", "jobs", "merges", "stopped_at_open", "abandoned"]
+RUN_FIELDS = ["at", "mode", "first_id", "last_id", "batches", "jobs", "merges", "stopped_at_open", "abandoned", "error"]
 
 
 class ParseError(Exception):
@@ -90,6 +91,8 @@ def parse_time(value):
 
 
 def job_row(kind, batch, task, pr, params, details):
+    if not details.get("queued"):
+        raise ParseError(f"batch {kind}/{batch}/{task}: no queued time")
     get = lambda key: "" if details.get(key) is None else details[key]
     wall = ""
     if details.get("started") and details.get("completed"):
@@ -122,6 +125,25 @@ def fetch_batch(fetch, kind, batch, pause):
     return None if status == 404 else parse_batch(page, kind, batch)
 
 
+def find_batch(fetch, batch, kinds, pause):
+    """Return (kind, batch info) for the first type that has this id, or None."""
+    for kind in kinds:
+        found = fetch_batch(fetch, kind, batch, pause)
+        if found is not None:
+            return kind, found
+    return None
+
+
+def list_kinds(fetch, seen_kinds, pause):
+    """Return the newest batch id and the batch types to try, pull requests first."""
+    status, page = fetch(f"{BASE}/all-jobs")
+    pause()
+    if status != 200:
+        raise ParseError(f"all-jobs: HTTP {status}")
+    head, listed = parse_all_jobs(page)
+    return head, ["CiviCRM-PR"] + sorted((set(listed) | seen_kinds) - {"CiviCRM-PR"})
+
+
 def collect_batch(fetch, kind, batch, info, pause, workers):
     def load(task):
         status, page = fetch(f"{BASE}/batch/{kind}/{batch}/{task}")
@@ -145,25 +167,17 @@ def collect_batch(fetch, kind, batch, info, pause, workers):
 
 def walk(fetch, cursor, known, seen_kinds, max_batches, now, pause, workers):
     """Collect batches after the cursor; stop at the first batch that is still running."""
-    status, page = fetch(f"{BASE}/all-jobs")
-    pause()
-    if status != 200:
-        raise ParseError(f"all-jobs: HTTP {status}")
-    head, listed = parse_all_jobs(page)
-    kinds = ["CiviCRM-PR"] + sorted((set(listed) | seen_kinds) - {"CiviCRM-PR"})
-    result = {"rows": [], "batches": 0, "cursor": cursor, "stopped_at_open": "", "abandoned": 0}
+    head, kinds = list_kinds(fetch, seen_kinds, pause)
+    result = {"rows": [], "batches": 0, "cursor": cursor, "stopped_at_open": "", "abandoned": 0, "error": ""}
     for batch in range(cursor + 1, head + 1):
         if batch in known:
             result["cursor"] = batch
             continue
         if result["batches"] >= max_batches:
             break
-        found = None
-        for kind in kinds:
-            found = fetch_batch(fetch, kind, batch, pause)
-            if found is not None:
-                break
-        if found is not None:
+        hit = find_batch(fetch, batch, kinds, pause)
+        if hit is not None:
+            kind, found = hit
             fresh = now - found["latest"] < OPEN_BATCH_MAX_AGE
             if found["pending"] and fresh:
                 result["stopped_at_open"] = batch
@@ -180,6 +194,34 @@ def walk(fetch, cursor, known, seen_kinds, max_batches, now, pause, workers):
     return result
 
 
+def walk_back(fetch, start, known, seen_kinds, max_batches, max_gap, pause, workers):
+    """Collect batches from start downwards; an error ends the walk and keeps what was collected."""
+    _, kinds = list_kinds(fetch, seen_kinds, pause)
+    result = {"rows": [], "batches": 0, "cursor": None, "stopped_at_open": "", "abandoned": 0, "error": ""}
+    batch, gap = start, 0
+    while batch > 0 and result["batches"] < max_batches and gap < max_gap:
+        try:
+            hit = None if batch in known else find_batch(fetch, batch, kinds, pause)
+            gap = 0 if hit is not None or batch in known else gap + 1
+            if hit is not None:
+                kind, found = hit
+                rows, unfinished = collect_batch(fetch, kind, batch, found, pause, workers)
+                result["abandoned"] += 1 if found["pending"] or unfinished else 0
+                result["rows"] += rows
+                result["batches"] += 1 if rows else 0
+                print(f"batch {batch}: {len(rows)} jobs, {result['batches']} batches so far", file=sys.stderr, flush=True)
+        except (ParseError, OSError) as error:
+            if not result["rows"]:
+                raise
+            result["error"] = f"{batch}: {error}"
+            print(f"note: stopped at batch {result['error']}", file=sys.stderr)
+            break
+        batch -= 1
+    if gap >= max_gap:
+        print(f"note: no batch in the {max_gap} ids above {batch}, this looks like the start of the history", file=sys.stderr)
+    return result
+
+
 def fetch_merges(fetch, token, since):
     """Return merged master PRs updated since the given time, newest pages first."""
     merges = {}
@@ -189,7 +231,10 @@ def fetch_merges(fetch, token, since):
         status, body = fetch(f"{PULLS}?{query}", headers)
         if status != 200:
             raise ParseError(f"pulls: HTTP {status}")
-        pulls = json.loads(body)
+        try:
+            pulls = json.loads(body)
+        except json.JSONDecodeError as error:
+            raise ParseError(f"pulls: response is not JSON: {error}") from error
         for pull in pulls:
             if pull["merged_at"]:
                 merges[pull["number"]] = {"number": pull["number"], "merged_at": pull["merged_at"], "title": pull["title"]}
@@ -203,6 +248,20 @@ def read_csv(path):
         return []
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
+
+
+def read_jobs(data_dir):
+    return [row for path in sorted((data_dir / "jobs").glob("*.csv")) for row in read_csv(path)]
+
+
+def append_jobs(data_dir, rows):
+    """Store rows per month of their queue time, so that no file grows without limit."""
+    months = defaultdict(list)
+    for row in rows:
+        months[row["queued"][:7]].append(row)
+    (data_dir / "jobs").mkdir(parents=True, exist_ok=True)
+    for month, part in months.items():
+        append_csv(data_dir / "jobs" / f"{month}.csv", JOB_FIELDS, part)
 
 
 def append_csv(path, fields, rows):
@@ -227,57 +286,76 @@ def field_summary(rows):
     }
 
 
-def run(fetch, data_dir, start_id, max_batches, dry_run, token, pause, now, workers=1):
-    """Collect everything first; any parse error leaves data/ untouched."""
+def run(fetch, data_dir, start_id, max_batches, dry_run, token, pause, now, workers=1, back=False, max_gap=MAX_BACK_GAP):
+    """Collect everything first, then write; forwards, any error leaves data/ untouched."""
     cursor_file = data_dir / "cursor.txt"
-    if start_id is None and not cursor_file.exists():
+    if start_id is None and not cursor_file.exists() and not back:
         raise SystemExit("error: no data/cursor.txt yet, pass --start-id with the first batch id to collect")
     if token is None and not dry_run:
         raise SystemExit("error: GITHUB_TOKEN is required to read merged pull requests")
-    cursor = start_id - 1 if start_id is not None else int(cursor_file.read_text(encoding="utf-8"))
-    jobs = read_csv(data_dir / "jobs.csv")
+    jobs = read_jobs(data_dir)
     known = {int(job["batch_id"]) for job in jobs}
-    result = walk(fetch, cursor, known, {job["batch_type"] for job in jobs}, max_batches, now, pause, workers)
+    kinds = {job["batch_type"] for job in jobs}
+    if back:
+        if start_id is None and not known:
+            raise SystemExit("error: data/ is empty, pass --start-id with the batch id to walk down from")
+        start = start_id if start_id is not None else min(known) - 1
+        result = walk_back(fetch, start, known, kinds, max_batches, max_gap, pause, workers)
+        ids = [int(row["batch_id"]) for row in result["rows"]] or [start]
+        first_id, last_id, cursor = min(ids), max(ids), None
+    else:
+        cursor = start_id - 1 if start_id is not None else int(cursor_file.read_text(encoding="utf-8"))
+        result = walk(fetch, cursor, known, kinds, max_batches, now, pause, workers)
+        first_id, last_id = cursor + 1, result["cursor"]
 
     new_merges = []
     started = [parse_time(row["started"]) for row in result["rows"] if row["started"]]
-    if started and not dry_run:
+    previous = [parse_time(job["started"]) for job in jobs if job["started"]]
+    if (started or (back and previous)) and not dry_run:
         have = {merge["number"] for merge in read_csv(data_dir / "merges.csv")}
-        previous = [parse_time(job["started"]) for job in jobs if job["started"]]
-        since = min(started + ([max(previous)] if previous else [])) - timedelta(days=1)
-        new_merges = [merge for merge in fetch_merges(fetch, token, since) if str(merge["number"]) not in have]
+        boundary = previous if back else [max(previous)] if previous else []
+        since = min(started + boundary) - timedelta(days=1)
+        try:
+            new_merges = [merge for merge in fetch_merges(fetch, token, since) if str(merge["number"]) not in have]
+        except (ParseError, OSError) as error:
+            if not back:
+                raise
+            result["error"] = f"merges: {error}"
+            print(f"note: {result['error']}; the next walk reads them again", file=sys.stderr)
 
     summary = {
-        "at": now.isoformat(timespec="seconds"), "first_id": cursor + 1, "last_id": result["cursor"],
+        "at": now.isoformat(timespec="seconds"), "mode": "back" if back else "forward", "first_id": first_id, "last_id": last_id,
         "batches": result["batches"], "jobs": len(result["rows"]), "merges": len(new_merges),
-        "stopped_at_open": result["stopped_at_open"], "abandoned": result["abandoned"],
+        "stopped_at_open": result["stopped_at_open"], "abandoned": result["abandoned"], "error": result["error"],
     }
     print(("dry run: " if dry_run else "") + json.dumps(summary))
     if dry_run:
         print(json.dumps(field_summary(result["rows"]), indent=1))
         return summary
-    if result["cursor"] == cursor and not result["rows"]:
+    if result["cursor"] == cursor and not result["rows"] and not new_merges:
         return summary
-    data_dir.mkdir(parents=True, exist_ok=True)
-    append_csv(data_dir / "jobs.csv", JOB_FIELDS, result["rows"])
+    append_jobs(data_dir, result["rows"])
     append_csv(data_dir / "merges.csv", MERGE_FIELDS, sorted(new_merges, key=lambda merge: merge["number"]))
     append_csv(data_dir / "runs.csv", RUN_FIELDS, [summary])
-    cursor_file.write_text(f"{result['cursor']}\n", encoding="utf-8")
+    if not back:
+        cursor_file.write_text(f"{result['cursor']}\n", encoding="utf-8")
     return summary
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, default=Path(__file__).parent / "data")
-    parser.add_argument("--start-id", type=int, help="first batch id, required until data/cursor.txt exists")
+    parser.add_argument("--start-id", type=int, help="first batch id, required until data/cursor.txt exists; with --back, the id to walk down from")
+    parser.add_argument("--back", action="store_true", help="collect older batches below the oldest known one")
+    parser.add_argument("--max-gap", type=int, default=MAX_BACK_GAP, help="with --back, missing ids in a row that end the walk")
     parser.add_argument("--max-batches", type=int, default=60, help="batches per run (19 to 49 requests each)")
     parser.add_argument("--workers", type=int, default=1, help="parallel task requests, for one-off backfills")
     parser.add_argument("--dry-run", action="store_true", help="print the counters and write nothing")
     args = parser.parse_args()
     try:
         run(http_get, args.data, args.start_id, args.max_batches, args.dry_run, os.environ.get("GITHUB_TOKEN"),
-            lambda: time.sleep(PAUSE_SECONDS), datetime.now(UTC), args.workers)
-    except (ParseError, urllib.error.URLError) as error:
+            lambda: time.sleep(PAUSE_SECONDS), datetime.now(UTC), args.workers, args.back, args.max_gap)
+    except (ParseError, OSError) as error:
         print(f"error: {error}; nothing was written", file=sys.stderr)
         return 1
     return 0
