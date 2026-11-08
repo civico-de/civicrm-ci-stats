@@ -1,0 +1,176 @@
+number,merged_at,title
+32802,2026-08-26T19:32:08Z,simplify non-validation of settings keys
+33279,2026-08-20T16:14:54Z,dev/core#6005 check for db data before cleaning up Managed Custom Fields/Groups
+33961,2026-11-05T04:43:46Z,Allow writing to `tags` field
+34705,2026-11-05T16:37:28Z,"Riverlea - move remaining theme settings from Display Preferences => Theme Settings, add notice"
+36521,2026-09-11T04:58:29Z,Restricts the Message Token Login to be active for 2 days maximum
+36575,2026-11-06T04:05:40Z,recur self-cancel form ignores membership ID
+36583,2026-09-14T00:02:27Z,allow overriding scheduled job class
+36687,2026-11-06T03:52:11Z,"DSN: Encode DSN credentials per RFC 3986, so spaces survive "
+36698,2026-11-06T04:29:57Z,OAuth UI: Mail Accounts - Show which accounts are OAuth-connected
+37145,2026-11-06T22:27:43Z,DSN: Setup - Keep a socket out of the percent-encoding
+37193,2026-10-05T21:05:39Z,"setting-php@1 -- Infer sensible values of ""is_domain"" and ""is_contact"""
+37197,2026-10-30T17:32:37Z,Afform - Clear cached placement lists when a form is saved or reverted
+37204,2026-10-16T16:46:24Z,ChartKit - Fix the row count of the base display component and show no count for charts
+37242,2026-11-03T20:33:23Z,Riverlea - allow selecting non-RL themes on theme settings page
+37278,2026-11-06T22:01:17Z,dev/core#6829 remove early pass for composing DSN in Standalone
+37357,2026-10-27T11:54:27Z,dev/core#6834 - Include child campaigns when filtering by a parent campaign
+37378,2026-11-01T04:06:49Z,dev/core#6849 Make “In Progress” a fully supported contribution status
+37411,2026-10-16T08:48:08Z,Api4 - Optimize formatOutputValues
+37415,2026-10-26T21:21:02Z,dev/user-interface#70 Dashboard - Use details/summary for dashlet accordions
+37418,2026-11-03T13:32:46Z,Api4 - Add address.display pseudo-field
+37481,2026-10-30T17:01:05Z,Scheduled reminders - Reset the simulated time when the job ends
+37485,2026-10-31T04:57:40Z,"Smarty, price fields, tags, queue - Clean up after PHP errors, not only exceptions"
+37486,2026-11-05T04:38:06Z,Scheduled jobs - Log a failing item and continue instead of aborting the run
+37487,2026-11-05T04:36:23Z,"Contact import, merge, smart groups - Restore cache flushing and release group locks when the work fails"
+37526,2026-10-30T17:29:51Z,Profile double opt-in sends every group through confirmation on non-English sites
+37548,2026-10-30T17:30:12Z,Fix: Resubscribing can delete a contact's opt-out
+37572,2026-10-19T19:22:51Z,Afform - Add Campaign as a FormBuilder entity
+37594,2026-11-05T04:36:20Z,Smart groups - Fix one broken smart group stopping the cache rebuild of all others
+37601,2026-10-30T16:38:29Z,dev/core#6882 Add Copy action to user-driven message templates
+37622,2026-10-27T16:37:14Z,Declare emailActivityID in the alterMailParams conformance spec
+37641,2026-11-02T21:57:44Z,PEAR DB - Don't reselect the database before every statement
+37655,2026-10-29T17:43:19Z,Afform - Keep a loaded value over a token default
+37659,2026-10-28T04:57:02Z,CiviReport - Add synthetic permissions for each instance
+37671,2026-10-28T03:04:49Z,Avoid footer jumping by sticking the footer to the bottom of the viewport
+37677,2026-10-26T12:36:05Z,Break contribution processing out of the per-participant processing loop
+37687,2026-10-29T17:00:57Z,Order::create - use completed status for $0 contributions
+37690,2026-10-26T18:38:26Z,Strict id tests33
+37691,2026-10-27T16:06:07Z,Strict id tests34
+37695,2026-10-26T19:28:08Z,Standalone - Fix login spinner never finishing when the page URL has a #fragment
+37698,2026-10-26T17:42:20Z,StatusPreference - Keep ignore_severity when an update omits it
+37699,2026-10-26T17:44:28Z,Settings - Compare effective values before firing post_change
+37700,2026-10-27T20:08:40Z,"Online events simpler, safer line item deletion"
+37701,2026-10-26T19:58:10Z,Remove complex code determining values that are only used in non-standard hook
+37702,2026-10-28T03:05:42Z,Online event - split unpaid & paid flows in Confirm
+37703,2026-10-29T16:59:25Z,Switch online event form to use Order.create
+37707,2026-10-26T19:21:45Z,dev/core#6886 - Don't flag reversal of a pending (AR) trxn as a payment
+37710,2026-10-26T17:24:22Z,Templates - Fix tag typos
+37716,2026-10-27T16:41:35Z,CSS - Fix misc issues caught by Stylelint
+37720,2026-10-28T15:30:23Z,"Update test to order api, apiv4"
+37721,2026-10-27T19:06:33Z,Clean up primary contact determination in online event form
+37722,2026-10-27T18:58:56Z,CustomFieldTest - Fix testBulkCreate on MariaDB
+37723,2026-10-28T15:30:35Z,Extract recordPaymentFinancialTrxn
+37727,2026-10-27T17:11:24Z,Strict id tests35
+37728,2026-10-28T15:31:14Z,Don't offer a contribution status change the form would reject on submit
+37729,2026-10-28T00:19:34Z,dev/core#6860 ContactSummary - Make tab counts more efficient
+37732,2026-10-27T11:53:25Z,Update test to apiv4 / order api
+37733,2026-10-27T16:59:49Z,RiverLea fix layout on FormBuilder page; also fix unreleased regression from #37319
+37736,2026-10-27T16:29:26Z,ChartKit - Run no search from a display Angular keeps detached
+37737,2026-11-03T13:47:36Z,ContactSummary - Add setting to disable tab counts 
+37738,2026-10-27T19:32:39Z,Strict id tests36
+37739,2026-10-27T18:31:50Z,Merge 6.20 to master
+37740,2026-11-02T14:44:39Z,CSS - Consolidate duplicate selectors
+37741,2026-10-28T05:35:53Z,Ext - Fix minor info.xml anomalies
+37742,2026-11-05T04:50:56Z,"oauth-client - Default mail account localpart to ""<mailbox>+"""
+37743,2026-10-28T02:25:13Z,Strict id tests37
+37745,2026-10-28T13:30:29Z,Strict id tests38
+37748,2026-10-28T14:31:19Z,Strict id tests39
+37749,2026-10-28T13:16:39Z,Fold processContribution() into saveOrder()
+37751,2026-10-28T17:39:36Z,Strict id tests40
+37752,2026-11-05T12:36:54Z,Dialogs - Fix popups moving down half a second after they open
+37753,2026-10-29T17:12:43Z,dev/core#6898 SearchKit - Clear selected rows when clicking search button
+37754,2026-10-28T19:01:17Z,Strict id tests41
+37755,2026-10-29T23:03:29Z,Fix RiverLea themes’ wonkey spinners
+37756,2026-10-29T04:20:14Z,Use $contributionID rather than  $contribution->id in Confirm::postProcess()
+37757,2026-10-29T17:54:11Z,Strict IDs: don't use the ids in XML datasets as they are
+37760,2026-10-31T01:14:54Z,Strict id tests43
+37762,2026-10-28T23:01:11Z,Merge 6.20 to master
+37764,2026-11-04T20:34:56Z,PCP - Switch to autocomplete
+37765,2026-10-29T01:23:06Z,[NFC] Fix recently added tests failures due to work on auto increment
+37766,2026-10-29T02:29:23Z,6.20
+37767,2026-10-29T16:58:18Z,"Add test for Mailing.eventReply - apiv3, called by emailProcessor, + cleanup"
+37769,2026-11-04T03:51:27Z, Move pear/mail hackery from composer patch to our core code
+37770,2026-10-29T11:52:33Z,Increase civicrm_batch.name length to 255 chars
+37771,2026-10-29T12:25:23Z,Remove dead refund_trxn_id form code left over from CRM-17751
+37775,2026-10-30T16:58:40Z,CRM_Core_Exception - Keep the previous exception
+37776,2026-10-30T06:36:00Z,CRM_Core_Lock - Try only once when acquire() gets a timeout of 0
+37777,2026-11-05T04:39:26Z,Transactions - Roll back when a pre-commit callback throws
+37780,2026-11-03T01:41:08Z,Kill dead routes 🧟
+37781,2026-11-05T22:15:55Z,"Standalone - update updateLastAccessed, ignore login check"
+37782,2026-11-04T21:07:59Z,Tell-a-friend - Move more code from core into the extension
+37783,2026-11-02T20:59:38Z,Batch Entry - Replace civicrm/ajax/pledgeAmount with CRM.api4
+37784,2026-10-29T17:42:13Z,Fix CRM.utils.createButton ignoring href and target
+37785,2026-10-29T19:02:04Z,[NFC] Fix invalid and inaccurate JSDoc types
+37786,2026-11-05T23:51:07Z,[NFC] Remove dead code in chart download and afForm
+37787,2026-11-02T22:41:20Z,[REF] Membership - Use api instead of bespoke ajax
+37790,2026-10-31T06:51:06Z,PDF - Use api instead of bespoke ajax
+37791,2026-10-30T13:20:48Z,SearchKit - Run apiBatch tasks declared with empty params
+37792,2026-10-30T06:50:59Z,6.20
+37796,2026-11-06T00:15:54Z,Add `is_constant` flag for server-side settings
+37799,2026-10-30T00:18:44Z,SettingsManager - fix latent bug loading contact env settings
+37800,2026-10-30T02:18:08Z,Fix master-only regression - payment_instrument_id empty for online event forms
+37809,2026-10-30T13:18:26Z,Make Message template subject just four lines high
+37810,2026-10-30T12:57:48Z,Remove legacy smarty version handling
+37811,2026-10-30T13:19:20Z,6.20
+37812,2026-11-04T23:54:18Z,ShareAddress - Switch bespoke ajax to api4
+37813,2026-11-05T04:49:43Z,Job.cleanup - Fix HTTP 500 for requests during the job by keeping the temp directory
+37814,2026-11-04T20:35:59Z,dev/core#6859 - Display names and links to Contact/Entity Reference fields in tab
+37821,2026-10-31T04:55:05Z,dev/core#6895 Afform - Correctly handle DisplayOnly fields in drafts
+37822,2026-10-31T01:22:40Z,Paid event registration fails for anonymous visitors
+37824,2026-10-31T05:21:31Z,Processing fee is wiped when a fee selection change keeps the total
+37835,2026-11-08T00:31:22Z,Tests - Reuse the compiled service container across headless boots
+37843,2026-10-31T21:32:00Z,Strict id tests44
+37844,2026-11-02T17:25:19Z,(NFC) Tests cleanup - lots of things are written as integers but should be strings
+37845,2026-11-03T20:43:41Z,New CiviEventListener attribute makes hook/event callbacks easy
+37847,2026-10-31T22:12:22Z,6.20
+37849,2026-11-03T20:35:38Z,Respect empoweredBy setting for report PDFs
+37850,2026-11-05T06:34:53Z,Refactor price field code for performance
+37851,2026-11-03T20:34:22Z,Remove recommendation to install Shoreditch
+37856,2026-11-02T19:43:12Z,Riverlea: adds gap between searchkit display header buttons
+37858,2026-11-02T22:16:30Z,CSS - Consolidate duplicate selectors in Thames
+37859,2026-11-03T20:33:02Z,Allow entries in a data entry batch with zero amounts.
+37861,2026-11-04T13:35:56Z,CustomGroup - Fix referenceCounts
+37863,2026-11-02T19:43:47Z,postbox: civix upgrade
+37869,2026-11-03T01:22:14Z,Add regression test for Contribution address_id.display preview context
+37870,2026-11-03T20:33:35Z,Strict id tests46
+37872,2026-11-03T12:02:18Z,Tests: use assertSame in preference to assertEquals
+37873,2026-11-03T03:01:49Z,6.20
+37876,2026-11-03T07:47:54Z,Tell-a-friend - declare a tab weight to stop an undefined array key warning
+37877,2026-11-05T06:47:35Z,CRM_Core_Menu - Write rebuilt routes in one transaction
+37880,2026-11-04T19:12:58Z,CSS - Run Stylelint on all files
+37881,2026-11-03T20:11:11Z,Keep line item tax amount when updating an existing contribution
+37885,2026-11-03T21:02:30Z,6.20
+37886,2026-11-03T21:36:37Z,6.20
+37887,2026-11-04T04:42:07Z,assertSame: fixes a
+37888,2026-11-04T02:27:43Z,assertSame: fixes b
+37889,2026-11-04T03:35:35Z,assertSame: fixes c
+37890,2026-11-04T04:29:08Z,assertSame: fixes d
+37902,2026-11-04T01:48:43Z,mixin/include-path@1 - Add the extension path only once
+37903,2026-11-04T05:17:36Z,6.20
+37904,2026-11-04T12:38:08Z,include-path@1 - Update metadata
+37905,2026-11-04T20:26:46Z,EventScanner - Add defensive deduplication
+37907,2026-11-05T14:54:15Z,Assert same ints
+37908,2026-11-04T20:46:26Z,[REF] Fix misc php style-linting issues
+37909,2026-11-04T20:48:28Z,6.20 to master (conflicts fixed)
+37912,2026-11-04T23:51:59Z,Fix Only variables should be assigned by reference err (PCP)
+37913,2026-11-04T23:40:22Z,Fix smarty notice
+37914,2026-11-04T23:08:39Z,[NFC] Fix Hookselect Where test due to auto increment change
+37915,2026-11-05T00:26:59Z,Fix smarty notice on event Confirm & ThankYou profile display
+37916,2026-11-05T00:41:54Z,[REF] Fix silly strings
+37918,2026-11-05T03:36:53Z,6.20
+37919,2026-11-05T03:36:51Z,6.20 to master (conflicts addressed)
+37920,2026-11-05T03:54:28Z,Further merge conflict fix
+37922,2026-11-05T20:11:07Z,(NFC) Prepare for updated PHPCS rules
+37923,2026-11-05T21:50:50Z,(NFC) Use short list syntax instead of list()
+37924,2026-11-05T20:39:15Z,(NFC) Order visibility before static in property declarations
+37925,2026-11-05T12:36:31Z,Strict IDs: fix test failing on master
+37926,2026-11-05T20:40:07Z,Strict IDs: stragglers ... 
+37929,2026-11-06T14:02:13Z,Tests: strict comparisons in tests run under both APIv3 and APIv4
+37934,2026-11-06T05:10:02Z,Setup - Cover the socket form in the encodeDsn/parseDsn round trip
+37936,2026-11-06T10:24:35Z,AGENTS.md - add guidance on strict assertions and record ids in tests
+37938,2026-11-06T14:52:31Z,APIv4 - Reject unknown pseudoconstant values on write
+37939,2026-11-06T22:28:45Z,DSN socket query fix
+37942,2026-11-06T14:59:43Z,Strict IDs: Postal Mailing search
+37945,2026-11-07T16:59:52Z,Performance - Skip constructing unnecessary DAO objects during pseudosonstant lookups
+37946,2026-11-07T17:30:23Z,Performance - Fix broken ACL deduplication
+37947,2026-11-07T17:01:35Z,Performance - Skip extra query in ContactPermission
+37949,2026-11-06T23:52:37Z,EntityProvider - Fix caching and modernize code
+37952,2026-11-07T01:17:35Z,CustomField - don't delete reserved option groups when a field is deleted
+37954,2026-11-07T16:42:23Z,Performance - Skip unnecessary row counting in CustomValueTable
+37955,2026-11-07T16:38:16Z,ActionSchedule - Improve performance of smartGroup check
+37959,2026-11-07T16:12:39Z,AllCoreTables - Look up a single entity instead of filtering all of them
+37961,2026-11-07T17:36:08Z,CiviUnitTestCase - Empty tables with DELETE in quickCleanup()
+37962,2026-11-07T17:46:57Z,Performance - Only drop triggers that exist when rebuilding triggers
+37967,2026-11-07T19:41:39Z,Tests - Make three APIv4 tests independent of the test site
+37972,2026-11-08T18:05:43Z,SearchKit - Improve select augmentation performance
