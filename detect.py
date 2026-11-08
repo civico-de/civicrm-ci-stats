@@ -147,6 +147,10 @@ def build_change(group, real, suites, nodes, merges):
         "parallel_before": median(e["parallel_before"] for e in real),
         "parallel_after": median(e["parallel_after"] for e in real),
         "candidates": plausible, "more_candidates": len(candidates) - len(plausible),
+        "evidence": sorted(
+            ({key: e[key] for key in ("suite", "bldtype", "bkprof", "node", "old", "new", "change")} for e in real),
+            key=lambda row: (row["suite"], row["node"]),
+        ),
     }
 
 
