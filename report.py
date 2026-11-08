@@ -243,12 +243,12 @@ def render_page(heading, stamp, jobs, listed, marked, older, nav):
             grid += line_chart(suite, f"{config[suite][0]}, {config[suite][1]} · median per {unit} and host", series, colors, marked, fmt_seconds, True, first, last)
         charts += f'<h2>Per suite and host</h2><div class="grid">{grid}</div>'
         load = defaultdict(list)
-        for job in jobs:
-            if job.get("parallel") is not None and job["started"] and job["node"] in colors:
+        for job in comparable:
+            if job.get("parallel") is not None:
                 load[job["node"]].append((detect.parse_time(job["started"]).date(), job["parallel"]))
         if load:
             charts += '<h2>Load per host</h2>' + line_chart(
-                "Other jobs running at the same time", f"Median per {unit}, all batch types. Jobs outside Duderino are not visible.",
+                "Other jobs running beside the measured jobs", f"Median per {unit} over the jobs charted above, counting every batch type. Jobs outside Duderino are not visible.",
                 {node: medians_per(period, rows) for node, rows in load.items()}, colors, marked, lambda v: f"{v:g}", True, first, last, axis=(COUNT_STEPS, lambda v: f"{v:g}"))
     return (
         f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'

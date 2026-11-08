@@ -8,6 +8,7 @@ from datetime import timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
+import detect
 import report
 from tests import simulate
 
@@ -71,6 +72,13 @@ class Render(unittest.TestCase):
         page = overview([job for job in simulate.jobs(4, days=140) if job["started"][:10] >= friday], [], [])
         self.assertIn("median per week", page)
         self.assertGreaterEqual(min(float(value) for value in re.findall(r'cx="([\d.-]+)"', page)), report.LEFT)
+
+    def test_load_chart_covers_the_measured_jobs_only(self):
+        measured = simulate.jobs(1, days=3)
+        failed = [{**job, "task_id": f"f{index}", "outcome": "FAILURE", "duration": ""} for index, job in enumerate(measured)]
+        page = overview(measured + failed, [], [])
+        counts = re.findall(r"\(n=(\d+)\)", page[page.index("Load per host"):])
+        self.assertEqual(sum(int(count) for count in counts), len([job for job in measured if detect.is_comparable(job)]))
 
     def test_empty_data_renders(self):
         page = overview([], [], [])
