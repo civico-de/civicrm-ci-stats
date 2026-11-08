@@ -1,0 +1,41 @@
+name: collect
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      start_id:
+        description: First batch id, required until data/cursor.txt exists
+        required: false
+      max_batches:
+        description: Batches per run
+        required: false
+        default: "60"
+permissions:
+  contents: write
+concurrency: collect
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    # 60 batches take about 35 minutes; a run that times out writes nothing.
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v6
+      - name: Collect
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          START_ID: ${{ inputs.start_id }}
+          MAX_BATCHES: ${{ inputs.max_batches }}
+        run: |
+          args=(--max-batches "${MAX_BATCHES:-60}")
+          if [ -n "$START_ID" ]; then args+=(--start-id "$START_ID"); fi
+          python3 collect.py "${args[@]}"
+      - name: Render
+        run: if [ -n "$(git status --porcelain data)" ]; then python3 report.py; fi
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs
+          git diff --cached --quiet || git commit -m "Update data and report"
+          git push
