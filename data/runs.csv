@@ -1,2 +1,2 @@
-at,first_id,last_id,batches,jobs,merges,stopped_at_open,abandoned
-2026-11-08T19:54:16+00:00,20893245,20893636,332,6993,175,,0
+at,mode,first_id,last_id,batches,jobs,merges,stopped_at_open,abandoned,error
+2026-11-08T19:54:16+00:00,forward,20893245,20893636,332,6993,175,,0,
