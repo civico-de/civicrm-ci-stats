@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CiviCRM CI Stats 2026-09</title><style>:root{color-scheme:light;--surface:#fcfcfb;--text:#0b0b0b;--text-2:#52514e;--grid:#e6e5e0;--line:#b5b4ad;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--s7:#6250d6;--s8:#e34948}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--surface:#1a1a19;--text:#f0efec;--text-2:#c3c2b7;--grid:#333330;--line:#62615c;
+--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767}}:root[data-theme="dark"]{color-scheme:dark;--surface:#1a1a19;--text:#f0efec;--text-2:#c3c2b7;--grid:#333330;--line:#62615c;
+--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--surface);color:var(--text);font:16px/1.5 system-ui,sans-serif}
+.page{max-width:1340px;margin:0 auto;padding:24px 16px 48px}
+a{color:inherit}:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 32px}
+h1{font-size:17px;margin:0}h2{font-size:21px;line-height:1.25;margin:40px 0 8px}h3{font-size:16px;margin:0}
+nav{display:flex;flex-wrap:wrap;gap:0 4px}nav a{padding:4px 8px}nav [aria-current]{font-weight:700;text-decoration:none}
+.lede{color:var(--text-2);margin:0 0 32px;max-width:72ch}
+.headline{font-size:clamp(30px,5.5vw,52px);line-height:1.1;font-weight:650;letter-spacing:-.015em;margin:0 0 20px;max-width:24ch;text-wrap:balance}
+.sub{color:var(--text-2);font-size:14px}p{margin:4px 0 12px;max-width:72ch}
+.change{display:grid;gap:4px 32px;border-top:1px solid var(--line);padding:16px 0;scroll-margin-top:16px}
+.delta{font-size:24px;line-height:1.2;font-weight:650;margin:0}.when{margin:0}
+.change ul{margin:4px 0 8px;padding:0;list-style:none}.change li{margin:0 0 6px;max-width:72ch}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:0 6px;font-size:14px;margin-top:6px}
+@media (min-width:760px){.change{grid-template-columns:15rem 1fr}}
+.hosts{margin-top:40px}
+.filters{position:sticky;top:0;z-index:1;background:var(--surface);display:flex;flex-wrap:wrap;gap:0 16px;align-items:center;padding:8px 0;border-bottom:1px solid var(--grid)}
+.filters label{display:inline-flex;gap:6px;align-items:center;min-height:32px;cursor:pointer}
+.key{width:16px;height:3px;border-radius:2px;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:32px 24px}
+figure{margin:0;min-width:0;max-width:640px}.hero{max-width:1040px}
+svg{width:100%;height:auto;display:block;margin-top:4px;touch-action:pan-y}svg:focus-visible{outline-offset:4px}
+svg text{fill:var(--text-2);font-size:17px;font-variant-numeric:tabular-nums}
+svg line,svg polyline,.dot{vector-effect:non-scaling-stroke}
+.gridline{stroke:var(--grid)}.series{fill:none;stroke-width:2}.mark{stroke:var(--line);stroke-dasharray:3 3}
+.cross{stroke:var(--text-2);display:none}.col{fill:transparent}
+@media (min-width:1072px){.hero svg text{font-size:8px}}
+@media (min-width:700px) and (max-width:1071px){.hero svg text{font-size:10px}}
+@media (max-width:480px){svg text{font-size:21px}.dot{r:6px}}
+details{margin-top:4px;font-size:14px}summary{cursor:pointer;min-height:24px}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%}
+td,th{padding:2px 12px 2px 0;text-align:left;border-bottom:1px solid var(--grid);white-space:nowrap}.num{text-align:right;font-variant-numeric:tabular-nums}
+footer{margin-top:48px;padding-top:12px;border-top:1px solid var(--line)}
+#tip{position:fixed;z-index:2;display:none;pointer-events:none;background:var(--text);color:var(--surface);padding:6px 10px;border-radius:4px;font-size:14px}
+#tip div{display:flex;align-items:center;gap:8px}#tip b{font-variant-numeric:tabular-nums}#tip small{font-size:12px}
+</style></head><body><div class="page"><header><h1>CiviCRM CI Stats 2026-09</h1><nav aria-label="Pages"><a href="index.html">Overview</a><a href="2026-11.html">2026-11</a><a href="2026-10.html">2026-10</a><a href="2026-09.html" aria-current="page">2026-09</a></nav></header><main><p class="lede">How long the civicrm-core pull request tests take on test.civicrm.org, and when that changes.</p><h2 class="headline">No lasting change detected in the collected data.</h2></main><footer class="sub">0 comparable jobs of 2475 collected. <a href="https://github.com/civico-de/civicrm-ci-stats">Source and data</a></footer><div id="tip" role="status"></div></div><script>
+const tip=document.getElementById('tip'),hidden=new Set(),charts=[...document.querySelectorAll('svg[data-chart]')];
+function place(x,y){tip.style.left=Math.max(4,Math.min(x+14,innerWidth-tip.offsetWidth-8))+'px';tip.style.top=Math.max(4,Math.min(y+14,innerHeight-tip.offsetHeight-8))+'px';}
+function row(line){const [name,color,value,count]=line.split('\t');if(hidden.has(name))return null;
+ const div=document.createElement('div'),key=document.createElement('span'),b=document.createElement('b'),label=document.createElement('span'),small=document.createElement('small');
+ key.className='key';key.style.background=color;b.textContent=value;label.textContent=name;small.textContent=count;div.append(key,b,label,small);return div;}
+function show(col,x,y){const lines=col.dataset.tip.split('\n'),head=document.createElement('div');head.textContent=col.dataset.day;
+ tip.replaceChildren(head,...lines.map(row).filter(Boolean));tip.style.display='block';place(x,y);
+ charts.forEach(chart=>{const match=chart.querySelector('.col[data-day="'+col.dataset.day+'"]'),cross=chart.querySelector('.cross');
+  cross.style.display=match?'block':'none';if(match){cross.setAttribute('x1',match.dataset.x);cross.setAttribute('x2',match.dataset.x);}});}
+function hide(){tip.style.display='none';charts.forEach(chart=>{chart.querySelector('.cross').style.display='none';});}
+document.addEventListener('pointerover',e=>{const col=e.target.closest&&e.target.closest('.col');if(col){show(col,e.clientX,e.clientY);}else{hide();}});
+document.addEventListener('pointermove',e=>{if(tip.style.display==='block'){place(e.clientX,e.clientY);}});
+charts.forEach(chart=>{const cols=[...chart.querySelectorAll('.col')];let index=cols.length-1;
+ const step=delta=>{index=Math.max(0,Math.min(cols.length-1,index+delta));const box=cols[index].getBoundingClientRect();show(cols[index],box.left,box.top);};
+ chart.addEventListener('focus',()=>step(0));chart.addEventListener('blur',hide);
+ chart.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();step(e.key==='ArrowRight'?1:-1);}if(e.key==='Escape'){hide();}});});
+const groups=[...document.querySelectorAll('g[data-node]')];
+document.querySelectorAll('[data-filter]').forEach(box=>{const name=box.dataset.filter,label=box.closest('label');
+ box.addEventListener('change',()=>{if(box.checked){hidden.delete(name);}else{hidden.add(name);}groups.filter(n=>n.dataset.node===name).forEach(n=>{n.style.display=box.checked?'':'none';});});
+ const emphasize=on=>groups.forEach(n=>{n.style.opacity=on&&n.dataset.node!==name?'.2':'';});
+ label.addEventListener('pointerenter',()=>emphasize(true));label.addEventListener('pointerleave',()=>emphasize(false));});
+</script></body></html>

@@ -623,3 +623,95 @@ number,merged_at,title
 37978,2026-11-09T01:36:34Z,[NFC] Remove PledgePayment date assignments that never reach the database
 37981,2026-11-09T01:40:03Z,Truncate very long SQL error messages in logs
 37983,2026-11-09T01:46:52Z,Remove the deprecated xls and doc print modes and unused help files
+22908,2022-03-08T22:38:02Z,(dev/core#3106) Raise max# of editable websites (5 => 25)
+30591,2025-02-20T02:34:20Z,Fix dedupe query wrangling to combine queries where 2 fields in the same table are always used together
+34062,2025-11-13T19:03:17Z,Allow int in `CRM_Utils_Time::setTime()`
+36066,2026-09-26T02:47:46Z,SearchKit query timeout setting
+36395,2026-09-30T04:48:07Z,dev/core#3871 Write-off feature for pledges
+36453,2026-09-26T07:11:39Z,Increase BULK_INSERT_HIGH_COUNT
+36487,2026-09-29T10:40:37Z,Fixes for message_admin's template editor for user-driven MessageTemplates
+36573,2026-09-29T14:37:58Z,Add a Min Length option to FormBuilder search filter fields
+36580,2026-09-29T01:39:11Z,allow guzzlehttp/psr7 3
+36618,2026-09-27T00:43:54Z,"Revert ""Always call constructor for ECK entities so we always have valid field definitions and joins work"""
+36857,2026-09-26T05:45:51Z,Fix memberships being lost or blocking the merge when merging contacts
+36895,2026-09-29T10:18:06Z,SearchKit listing - move the tab strip into a panel heading
+36919,2026-09-28T15:31:22Z,Form Builder - move the conditional-rules tabs into a panel heading
+36923,2026-09-25T08:31:36Z,Start to user Order object rather than confusing variable passing on online event form
+36926,2026-09-24T22:59:46Z,Deprecate the civicrm_membership_payment join in CRM_Member_BAO_Query
+36927,2026-09-28T22:30:06Z,Message Templates - replace the message_admin Angular listing with SearchKit
+36931,2026-09-25T01:54:00Z,Add filter to allow modifying Searchkit joins
+36957,2026-09-26T05:38:29Z,WorkflowMessage::render - allow rendering non-default templates (eg. original)
+37019,2026-09-23T10:23:26Z,CustomField - Stricter validation of field types 
+37034,2026-09-28T10:17:45Z,AGENTS.md declare use of agent.
+37037,2026-09-28T10:16:11Z,dev/core#6795 - APIv4 PaymentProcessor.refund requires 'administer CiviCRM' instead of 'refund contributions'
+37057,2026-09-25T07:54:45Z,Fix Fields Collision
+37063,2026-09-25T16:13:26Z,"Fix slow indexing during ""in groups"" filter followup from pr36659"
+37064,2026-09-28T10:16:09Z,dev/core#6795 - Fix permissions in PaymentProcessor.refund and move files to ext
+37072,2026-09-25T08:32:21Z,Simplify createContrib check to use BAO_Order & check for line items
+37075,2026-09-25T08:32:42Z,Separate submit function shared between single back office participant form and register task
+37078,2026-09-25T08:33:05Z,Move ContributionPage validation back to ContributionPage
+37079,2026-09-29T20:25:17Z,dev/core#6785 Don't require payment details for a $0 confirm-page total
+37080,2026-09-25T08:34:56Z,dev/core#6797 Increment failure_count on a failed recurring payment
+37081,2026-09-25T14:24:33Z,dev/core#6798 Don't advance next_sched_contribution_date on a failed payment
+37082,2026-09-25T08:39:00Z,Revert https://github.com/civicrm/civicrm-core/pull/36639
+37083,2026-09-25T08:40:31Z,dev/core#6792 Enable submitOnce on the Edit Contact form
+37084,2026-09-25T08:40:52Z,dev/core#6691 Fix fatal transferring a participant with an unlinked line item
+37085,2026-09-25T08:41:19Z,Switch SelfSvcTransfer to call FinancialItem::writeRecord
+37087,2026-09-25T14:24:48Z,Remove deprecated test method
+37088,2026-09-25T14:25:01Z,Use BAO Order to load all line items in BAO_Contribution
+37090,2026-09-25T14:25:16Z,Remove dated define
+37091,2026-09-25T14:25:28Z,Remove some more legacy variables from OfflineContributionReceipt
+37093,2026-09-25T14:25:51Z,Stop passing BAO objects around  back-office participant form
+37094,2026-09-28T10:08:39Z,Clean up record fees
+37095,2026-09-25T14:26:17Z,Use writeRecord to create template line items rather than using a hack to by-pass what create does
+37096,2026-09-25T16:09:50Z,"[REF] CRM_Utils_String::unserialize avoid exception for """""
+37097,2026-09-25T14:26:35Z,"Add getter for getPanTruncation, getCardTypeID"
+37099,2026-09-28T10:09:41Z,Remove flawed invoice ID handling
+37100,2026-09-28T10:10:38Z,Back office participant form - Switch Participant.create to Api4 and save custom data inline
+37101,2026-09-28T10:11:08Z,Membership.BAO - do not touch line items if any are linked to a contribution
+37102,2026-09-26T01:11:20Z,Use writeRecord not create in codegen
+37103,2026-09-28T10:11:39Z,Consolidate FinancialItem creation within Financial processor
+37104,2026-09-28T10:12:13Z,Fold createProportionalEntity back into caller
+37105,2026-09-28T10:14:11Z,Update test to use the preferred getTestForm
+37107,2026-09-28T10:14:14Z,Start to use BAO_Order helpers in online event (Confirm)
+37108,2026-09-28T10:14:20Z,Use getEventValue helper for getting is_pay_later from the event
+37109,2026-09-28T10:13:57Z,Consolidate is_pay_later resolution in the Online event forms
+37116,2026-09-28T18:11:23Z,dev/core#6802 Importer - Fix forEach loop on object
+37117,2026-09-28T23:14:57Z,contact-merge delete membership contributions - use LineItems instead of MembershipPayment
+37119,2026-09-28T22:37:26Z,Find memberships by line item in the contribution search
+37120,2026-09-28T22:33:54Z,fix type error in Core_Error class
+37122,2026-09-29T05:24:40Z,dev/core#6806 SearchKit - Fix typo causing infdig errors
+37123,2026-09-29T05:17:59Z,fix 'is between' operator on SearchKit date filters
+37125,2026-09-28T22:34:36Z,"Remove expired deprecated methods from Core entity BAOs (Address, Phone, IM, OpenID, Job, MailSettings, Mapping)"
+37126,2026-09-29T08:18:45Z,Per code comment get rid of 'individual' variable
+37127,2026-09-28T22:32:56Z,Remove expired deprecated methods from CRM_Core_BAO_CustomGroup and CRM_Core_BAO_CustomField
+37128,2026-09-28T22:31:00Z,"Remove expired deprecated methods from CRM_Core_BAO_UFMatch, Location, PreferencesDate, and ActionSchedule"
+37129,2026-09-29T01:48:45Z,"Remove expired deprecated methods from CRM_Utils (Recent, SQL_TempTable, String, System, Token)"
+37131,2026-09-28T22:32:04Z,"Remove expired deprecated BAO methods (Email, Note, Cache, UFField, UFGroup, Navigation)"
+37132,2026-09-29T05:24:00Z,Remove deprecated dedupe coretables methods
+37133,2026-09-29T00:56:08Z,Apply default in tokens even if the entity is missing
+37137,2026-09-29T08:18:56Z,Fail more gently on bad import mappings
+37138,2026-09-30T11:44:32Z,Riverlea (Thames) - drop the search-display control-bar override
+37143,2026-09-29T14:40:31Z,Admin forms - Fix editing a record whose BAO no longer has retrieve()
+37147,2026-09-29T19:03:05Z,Preserve color/icon/description on af-field select2 options
+37150,2026-09-29T23:36:21Z,Add warning to deprecated function CRM_Utils_Time::getTimeRaw
+37151,2026-09-30T11:30:19Z,Consolidate handling of deferredTrxn
+37153,2026-09-29T23:35:50Z,CustomField - Fix notices on preview form
+37154,2026-09-30T11:31:56Z,"Fix deprecated function calls, add warnings"
+37155,2026-09-30T11:32:04Z,Delete unused deprecated class CRM_Contact_Form_Edit_CustomData
+37156,2026-09-30T11:31:20Z,Remove unused legacy BAO alias stubs
+37157,2026-09-30T00:11:44Z,"Remove deprecated Contact_Form_Edit block helpers (IM, OpenID, Phone)"
+37160,2026-09-30T04:43:18Z,Fix type hint regression
+37162,2026-09-30T04:55:13Z,[NFC] dev/core#6810 - reenable ONLY_FULL_GROUP_BY after test indirectly changes it
+37165,2026-09-30T12:55:57Z,APIv4 - Return 400 on malformed JSON in AJAX requests
+37168,2026-09-30T16:10:38Z,regen after 36395
+37171,2026-09-30T16:47:40Z,dev/core#6782 ContactSummary - Allow deleting the last website/email/im/phone/oid
+37935,2026-11-09T02:08:05Z,6.21
+37956,2026-11-09T02:07:22Z,Test - delete custom groups/fields left behind by transactional tests
+37958,2026-11-09T02:06:06Z,REF - Stop calling deprecated pseudoconstant function
+37970,2026-11-09T01:58:21Z,"Remove SQL_CALC_FOUND_ROWS from dedupe, case activity and custom data listings"
+37971,2026-11-09T01:55:00Z,Contribution and Membership Details report: join directly instead of a MEMORY temp table
+37974,2026-11-09T02:05:00Z,[REF] FinancialProcessor - Delete unused functions
+37976,2026-11-09T02:09:09Z,"Tests, CodeGen - Delete unused test and seed generator functions"
+37980,2026-11-09T02:02:37Z,Roll back the transaction on PHP errors in Contribution create and API replace
+37982,2026-11-09T01:57:32Z,(NFC) Remove Smarty templates nothing loads
