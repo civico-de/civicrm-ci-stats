@@ -262,3 +262,364 @@ number,merged_at,title
 37697,2026-10-26T15:55:33Z,CSS - Fix style errors from Stylelint
 37705,2026-10-26T12:11:15Z,dev/core#3128 Cases dashlet - fix ambiguous 'subject' when sorting by Subject
 37711,2026-10-26T15:49:36Z,Test - Remove hardcoded id
+28557,2024-06-20T18:05:31Z,dev/core#4231 Fix failure to import non-default state
+28859,2024-01-04T00:53:43Z,Fix notice on civi-report display
+29796,2024-04-15T14:05:16Z,Remove deprecated function
+30447,2024-06-17T13:55:27Z,dev/core#5280 Fix bug switching between member type & price set on back-office membership
+32155,2025-02-27T12:21:38Z,[REF] CRM/Contact - Use str_contains instead of strpos
+32473,2025-03-24T11:00:59Z,Use civiimport for participant import
+32481,2025-03-24T11:00:01Z,"Comment fix, remove pass-by-ref"
+32533,2025-03-28T22:25:52Z,Contribution import name standardisation
+32540,2025-04-05T00:08:09Z,Fix Custom import to use civiimport
+32833,2025-05-24T02:05:03Z,Simplify check on pan_truncation
+32954,2025-06-09T22:56:59Z,"SiteEmail - Remove redundant label from ""Site Email Address"" form"
+32958,2025-06-11T20:59:25Z,dev/core#5932 - Bump select2 to v3.5-civicrm-1.3
+32987,2025-06-16T07:30:37Z,Api4 - Catch errors with pseudoconstant lookups
+33015,2025-06-19T12:26:16Z,Allow extra detail to be passed through to validate
+33027,2025-06-27T17:43:48Z,add a relativeDate hook
+33145,2025-07-16T02:24:37Z,Add legacy batch entry extension
+33175,2025-07-13T00:28:34Z,[NFC] Api4 - Add test for EMPTY and NOT EMPTY operators
+33249,2025-07-23T19:41:17Z,Api4 - Add GROUP_NTH sql function
+33261,2025-07-23T17:48:16Z,Api Explorer - Improve theming in Riverlea
+33304,2025-08-02T13:39:20Z,dev/core#6018 SearchKit - Fix dragging in Safari
+33356,2025-08-06T14:26:54Z,Fix Message Preview crash on sites with only quick config pricesets
+33728,2026-10-10T20:27:02Z,dev/core#6137 Add `cms` flushing to `Civi::rebuild()`
+33871,2025-10-23T15:34:15Z,Make financial processor non-static
+33939,2025-10-29T10:00:58Z,"Make `participantTransfer`  function private, switch to array input"
+34292,2025-12-17T12:04:49Z,Remove non-variable variable
+34293,2025-12-17T12:04:47Z,Load original line items once and pass into recordFinancialAccounts 
+34438,2026-01-07T09:25:45Z,SearchKit - Fix console error from empty cssRules
+34458,2026-01-09T09:52:47Z,CustomGroup - Collapse wysywyg inputs on form to save space
+34556,2026-01-22T11:55:30Z,Update online receipts to use same product tokens as offline
+34557,2026-01-22T11:58:47Z,Upgrade legacy smarty variable to token
+34561,2026-01-22T11:58:45Z,Use getSubmittedValue to retrieve the submitted premium options
+34567,2026-01-30T10:14:08Z,Afform - Add titles to metadata
+34568,2026-01-22T17:47:58Z,dev/core#5469 - Fix crmValidate to include autocomplete-selects
+34625,2026-01-30T20:47:02Z,AuthX - Fix capitalization of permissions
+34927,2026-02-27T09:48:35Z,Remove another extraneour getProcessorForEntity call
+35122,2026-03-16T22:18:21Z,PHP8.5 deprecation fix - pledge search
+35199,2026-03-26T14:35:54Z,PHP8.5 fix on pdf letter
+35200,2026-03-26T14:35:04Z,Take private copy of function allowing for noisy deprecation
+35201,2026-03-26T14:35:41Z,Remove deprecated-with-noise Utils_Token getDomainTokens
+35584,2026-10-06T06:45:34Z,MembershipRenewal form: use APIv4 Order::create for the renewal contribution
+36018,2026-06-18T17:02:32Z,PR commands - fix newlines
+36085,2026-09-02T17:57:34Z,FTS - use `contact_names` index for quicksearch
+36093,2026-06-30T14:20:12Z,dev/core#4297 - Relocate help icon to label cell in Member forms
+36094,2026-07-03T14:43:25Z,CRM-4297 - Relocate help icon to label for Event forms
+36095,2026-07-05T17:50:54Z,"CRM-4297 - Relocate help icon to label for Contribute, Pledge and PCP forms"
+36096,2026-07-05T17:52:20Z,"CRM-4297 - Relocate help icon to label for Badge Layout, Financial Batch and SMS forms"
+36098,2026-06-27T19:19:16Z,ScheduleReminders - Move token help text back to the token selector
+36121,2026-10-08T08:33:59Z,Smarty - Convert {ts} block to compile-time plugin
+36186,2026-10-16T08:44:28Z,dev/core#6610 Add Repeater level extras data
+36340,2026-07-30T00:39:15Z,dev/core#6606 - allow changing default contribution status for new backoffice contributions
+36398,2026-08-03T14:57:37Z,Add Jonathan Dahan to contributor-key.yml
+36488,2026-10-05T12:09:12Z,Use message_admin extension for User-Driven Message Templates
+36489,2026-10-05T12:09:10Z,"Allow Message Templates to be tagged, via the message_admin extension"
+36505,2026-10-09T07:58:33Z,Add MessageTemplate.usage field
+36571,2026-09-08T20:20:07Z,Replace removed-in-v4 lodash aliases in civi_mail with native JS
+36577,2026-09-02T20:28:14Z,Replace removed-in-v4 lodash aliases in search_kit with native JS
+36584,2026-08-25T21:39:50Z,SearchKit: Allow joining entity displays on (some) aggregated IDs
+36586,2026-10-09T17:33:06Z,modernize Drupal CMS cache clear mechanism
+36587,2026-08-26T12:39:11Z,Afform - Let Form Builder point a dynamic foreign key at another entity on the form
+36613,2026-10-07T21:56:08Z,Extend guard around CIVICRM_IFRAME constant to theme check
+36660,2026-09-05T04:13:08Z,Fixing missing x button for dialogs
+36668,2026-09-07T02:15:58Z,Fix hidden CiviCRM menu
+36695,2026-10-05T08:44:44Z,hook_civicrm_initiators - Let an initiator describe an existing connection
+36696,2026-10-08T07:03:02Z,OAuth UI: Mail Account Settings - Show connection status and hide externally-supplied credentials
+36701,2026-09-08T20:28:11Z,Add CRM.utils.escapeHtml() and replace all 86 lodash _.escape() calls
+36702,2026-09-08T20:39:51Z,Remove trivial _.template() calls with no interpolation
+36772,2026-09-09T17:09:47Z,Use structuredClone() and CRM.utils.cloneDeep() in search_kit instead of lodash
+36780,2026-09-10T16:39:57Z,Replace lodash includes/contains with native Array/String includes()
+36791,2026-09-10T12:04:09Z,Replace lodash _.extend/_.assign with Object.assign
+36792,2026-09-10T12:09:39Z,Replace lodash _.keys/_.values with Object.keys/Object.values
+36794,2026-09-10T14:26:54Z,Replace lodash array set operations with native equivalents
+36802,2026-10-05T14:12:00Z,prevent error on SqlCache race condition
+36818,2026-09-11T05:50:56Z,dev/core#6670: Cast operands to int in getParticipantCount() and vali…
+36826,2026-10-01T11:56:08Z,"dev/core#6386 Fix ""Event Active On"" search excluding events already in progress"
+36861,2026-09-15T00:27:32Z,Replace lodash collection calls that use shorthand with native equivalents
+36878,2026-09-15T17:24:13Z,Lodash drop unused param
+36886,2026-10-01T13:54:47Z,Add contact type css class to summary screen
+36978,2026-10-03T08:16:36Z,Moved the start of the crm-block element up to span the rest of the t…
+37004,2026-10-16T14:49:32Z,Afform - support tokens for values from joined entities
+37020,2026-09-22T18:28:33Z,SearchKit - replace the two _.merge calls with explicit merges
+37021,2026-10-05T21:18:59Z,Drupal: fix URL language suffixes for multi-lingual
+37031,2026-09-24T15:15:42Z,Replace the two _.isEqual calls with native comparisons
+37058,2026-10-05T21:16:17Z,Lodash case converters
+37059,2026-10-06T13:44:43Z,Lodash template
+37098,2026-10-01T07:05:34Z,Move Payment processing until after Order create on online event form
+37110,2026-09-30T11:29:41Z,Add test for importing batches
+37112,2026-09-28T14:46:25Z,Afform - Respect input_attrs on date search ranges
+37121,2026-10-05T21:08:01Z,dev/core#6084 Standalone ErrorHandler - skip errors silenced with @
+37124,2026-09-29T08:18:25Z,Switch back office participant form to use Api4 Order::create in saveOrder()
+37140,2026-10-05T23:58:03Z,MembershipPayment: Count each membership contribution once in the member reports
+37144,2026-10-01T02:20:27Z,Message templates - show draft translations on the workflow listing
+37146,2026-10-01T12:49:24Z,DSN: Treat '0' as a usable DSN component
+37148,2026-10-05T23:51:41Z,dev/core#5862 - Standalone: don't cache replacements looked up before the DSN
+37149,2026-09-30T11:29:53Z,Simplify register_date in online event form
+37152,2026-10-05T14:10:37Z,Remove compressed layout on CiviCase Activity and EditClient
+37161,2026-10-06T13:45:45Z,dev/core#6654 Add core support for more than one Check payment instrument
+37164,2026-09-30T12:57:23Z,SearchKit - remove the stray space before the comma in multi-valued link columns
+37167,2026-09-30T17:48:10Z,Make the classscanner caching work better
+37169,2026-10-05T14:09:23Z,dev/core#6755 Remove huge class on textareas
+37170,2026-09-30T21:43:29Z,"Minor changes to the New Campaign form, adds help texts"
+37173,2026-10-01T07:06:33Z,Flatten and fix createDeferredTrxn's confusing skip condition
+37174,2026-09-30T20:20:50Z,Fold createProportionalFinancialEntries back into only caller
+37175,2026-10-01T16:48:54Z,SearchKit - Fix test for MySql
+37176,2026-10-01T07:07:13Z,Add updatedLineItems as a FinancialProcessor constructor input
+37177,2026-09-30T21:21:11Z,6.19 to master
+37178,2026-10-07T09:16:31Z,SearchKit - Improve index handling in DB Entity table displays
+37179,2026-09-30T22:14:22Z,Fold assignProportionalLineItems back into only caller
+37180,2026-10-01T07:07:36Z,Flatten recordAlwaysAccountsReceivable's double-negative gate
+37181,2026-10-06T16:28:02Z,dev/core#6799 SearchKit - Allow custom date formats for columns
+37182,2026-09-30T23:36:10Z,Also use getMergedTo for contact imports
+37183,2026-10-01T07:08:21Z,Add getSubmittedParticipantValue(s) helpers to CRM_Event_Form_Registration
+37184,2026-10-01T07:08:39Z,Update legacy test method
+37186,2026-10-05T21:15:17Z,Fix Generating of Permissions when no description is provided in Joomla dismater code
+37191,2026-10-05T14:04:26Z,ContactInline - Consolidate duplicate code 
+37192,2026-10-01T16:40:32Z,CRM_Utils_Request - Cleanup $_nullObject uses
+37195,2026-10-04T18:25:38Z,dev/core#6817 CSS Only: Set fallback for css variable fix missing admin menu.
+37198,2026-10-05T14:07:52Z,Afform - Fix number search ranges passed in the URL or as a default
+37201,2026-10-03T08:00:59Z,SearchKit - Use fieldSeparator setting for csv output
+37202,2026-10-06T02:27:15Z,Search - Relative date refactoring
+37206,2026-10-05T09:37:28Z,Afform - remove unnecessary clientside data
+37207,2026-10-05T13:58:28Z,Simplify recordAlwaysAccountsReceivable
+37208,2026-10-05T13:58:56Z,Fix recordFees() to always link the fee trxn to the contribution
+37209,2026-10-05T13:59:30Z,Flatten line items within the financial processor
+37210,2026-10-06T01:59:47Z,Navigation - Add option to open in a tab 
+37212,2026-10-04T20:00:33Z,Settings - remove deprecated handling for contribution_invoice_settings
+37215,2026-10-05T14:01:52Z,dev/core#6808 Set non-deductible for back-office participant forms
+37216,2026-10-05T14:00:18Z,dev/core#6808 Scale non_deductible_amount by quantity on the line item
+37217,2026-10-05T14:01:55Z,Per code comments remove some legacy lines
+37218,2026-10-05T14:03:25Z,"Move getPaymentProcessorID to shared CRM_Member_Form, fix MembershipRenawal to use it"
+37219,2026-10-05T14:03:09Z,MembershipRenewal - use shared getMembershipTypeID()/getMembershipTypeValue()
+37220,2026-10-05T20:31:12Z,dev/core#6816 - provide option to unschedule a Mailing
+37221,2026-10-05T14:01:40Z,CRM_Member_Form_Membership - switch online-payment order creation from v3 to v4 Order api
+37222,2026-10-05T14:02:13Z,Remove unused defaultRole template variable
+37223,2026-10-05T14:02:56Z,Rationalise handling of participant role Id in front end event forms
+37224,2026-10-05T16:09:11Z,"Remove unused variables, use function for participantIndex"
+37225,2026-10-07T14:03:59Z,Resolve participant/contribution campaign_id via standardised helper
+37226,2026-10-05T20:34:16Z,Fix ActivityContact.delete optimization
+37227,2026-10-05T20:32:48Z,Fold createFinancialItemsForLine back into only caller
+37228,2026-10-06T09:04:37Z,Start to extract getContributionValues on membership forms
+37229,2026-10-06T09:21:02Z,[REF] Simplify CRM_Core_BAO_CustomField::getTableColumnGroup + tests
+37230,2026-10-06T07:48:52Z,"Message templates - clarify full-HTML-document warning, fix legacy sample"
+37233,2026-10-05T20:59:57Z,Add classes to contribution view
+37234,2026-10-06T09:20:42Z,dev/core#5175 - Remove English-only ordinals from translated date strings
+37235,2026-10-06T09:07:54Z,[REF] Merger - Simplify function getMultiValueCidRefs
+37236,2026-10-05T23:07:55Z,6.19
+37237,2026-10-06T14:41:53Z,"Finish removing ids array from MembershipCreate, remove pass by ref"
+37238,2026-10-07T13:07:00Z,Clean up BAO_Membership::create
+37240,2026-10-10T08:13:14Z,WorkflowMessage - declare the entity that each id property refers to
+37243,2026-10-08T14:36:19Z,Theme Settings - dont show preview buttons when they dont work
+37244,2026-10-08T14:31:12Z,Respect weekBegins setting in datepicker
+37246,2026-10-07T04:57:20Z,Remove dead CRM_Core_BAO_Discount _values['discount'] handling from Registration wizard
+37248,2026-10-07T11:44:16Z,Riverlea: replaces btn-cancel variables with btn-danger
+37249,2026-10-07T09:11:40Z,SearchAdmin - Improve handling of non-dao entity joins
+37251,2026-10-07T13:39:26Z,lodash: Replace the last calls in core
+37252,2026-10-07T07:00:38Z,6.19 to master
+37253,2026-10-06T20:48:55Z,SearchKit - Drop a row count that arrives after the filters changed
+37255,2026-10-07T09:10:34Z,Afform - Allow setting values in prefill hook
+37256,2026-10-07T01:41:44Z,Mark checknumberpaymentmethod extension obsolete
+37257,2026-10-09T09:13:55Z,Standalone - Improve user management menu items
+37259,2026-10-07T08:28:01Z,Small improvements for new Message Templates admin
+37260,2026-10-07T05:07:47Z,dev/core#6828 Dedupe - Roll back the merge when moveAllBelongings() fails
+37261,2026-10-07T05:44:47Z,Run Regen post merge of #37161
+37263,2026-10-07T11:38:15Z,Bumps the Chrome mink driver to latest version
+37264,2026-10-07T06:50:00Z,Add classes to membership
+37265,2026-10-07T13:33:59Z,Add helper to getAccountsReceivableAccount to financial processor
+37267,2026-10-07T11:35:29Z,Copy FinancialItem::add back to the financial processor
+37268,2026-10-07T13:06:00Z,Make createDeferredTrxn fetch its own line items and financial item ids
+37269,2026-10-07T07:44:00Z,Add Hans Rossel to contributor-key.yml
+37270,2026-10-07T08:00:13Z,Bump brace-expansion from 1.1.16 to 1.1.21
+37271,2026-10-07T11:41:23Z,Remove dead payment_instrument_id showHideByValue toggles
+37272,2026-10-07T09:56:45Z,civicrm.settings.php - no need to set CIVICRM_LOGGING_DSN explicitly
+37273,2026-10-07T08:50:07Z,CRM_Utils_Cache - Use APCu for memory-backed caches when CIVICRM_DB_CACHE_CLASS is APCucache
+37274,2026-10-07T13:04:21Z,Refactor OpenCase processing to be closer to CRM_Activity_Form_Activity
+37275,2026-10-07T15:44:12Z,Fix ActivityContacts being deleted and recreated unnecessarily
+37276,2026-10-07T21:53:16Z,add setting metadata for CIVICRM_LOGGING_DSN
+37277,2026-10-07T15:19:24Z,Standardise getOrder() on the membership forms
+37279,2026-10-07T12:33:05Z,Add help text for disabling logged-in-contact From email
+37280,2026-10-08T19:47:44Z,"Riverlea: h3 background colour: remove default background colours, add utility class"
+37281,2026-10-07T13:33:42Z,[Afform] Convert relative date filter defaults on submit
+37282,2026-10-07T13:36:19Z,Jamaica-provinces update outdated provinces abbreviations
+37283,2026-10-07T22:54:38Z,North-Korea-provinces update outdated provinces abbreviations and names
+37284,2026-10-09T11:20:42Z,Make index UI_case_activity_id unique
+37287,2026-10-07T14:03:44Z, dev/core#6654 PaymentEdit - support multiple check/credit-card-like payment instruments
+37288,2026-10-09T15:06:18Z,Estonia-provinces update outdated provinces abbreviations
+37289,2026-10-07T14:25:10Z,Remove dead getAmountLevel() and tax_amount session round-trip
+37290,2026-10-07T14:42:57Z,message_admin - fix editor not rendering for User-Driven templates
+37291,2026-10-07T15:54:14Z,"Revert premature force-uninstall of checknumberpaymentmethod, uninstall it from the upgrade step instead"
+37292,2026-10-07T15:45:00Z,dev/wordpress#168 Set the automatic sign-in to active if not already set
+37293,2026-10-07T15:21:47Z,MemberForm - Fix same element being added twice
+37295,2026-10-16T08:54:35Z,Riverlea: mobile front-end - restores padding on screens under 479px (mobile)
+37296,2026-10-07T15:39:12Z,Allow language mapping for German language variants (de)
+37297,2026-10-08T08:25:58Z,Resolve participant/contribution source via getSource() helper
+37298,2026-10-08T08:26:22Z,Add createFinancialTrxn helper to financial processor
+37299,2026-10-07T22:52:20Z,Use getTestForm in CRM_Admin_Form_PaymentProcessorTest
+37300,2026-10-08T08:26:37Z,Remove dead code from CRM_Member_Form_Membership::recordMembershipContribution()
+37302,2026-10-07T21:43:25Z,SearchEvent - Switch to jQuery instead of showHide.tpl
+37303,2026-10-07T21:44:27Z,[REF] Remove unused showHide code from AdditionalPayment.tpl
+37304,2026-10-08T04:48:51Z,Remove redundant showHide code from Contribution.tpl
+37305,2026-10-08T15:38:36Z,Civi::url() - Never downgrade https to http
+37307,2026-10-07T22:59:25Z,6.19
+37310,2026-10-08T05:10:19Z,Add organization for Ryan Morash in contributor-key.yml
+37312,2026-10-08T08:26:54Z,Consolidate contribution/membership source into a standard getSource() on backoffice membership forms
+37313,2026-10-08T08:28:36Z,Remove redundant CRM_Core_Payment_Form::mapParams() call from the membership forms
+37314,2026-10-08T19:46:38Z,6.20
+37315,2026-10-08T08:29:25Z,Membership::submit() - read submitted values via getSubmittedValue() not $formValues
+37317,2026-10-08T14:11:53Z,Financial Processor - more accurate $0 line item changes
+37318,2026-10-08T12:49:15Z,NFC: hook_civicrm_initiators - Correct the versions in its docblocks
+37319,2026-10-19T12:24:53Z,RiverLea: Add block formatting context to .form-inline
+37324,2026-10-08T12:30:26Z,Move FinancialProcessor off CRM_Financial_BAO_FinancialItem in favour of createFinancialItem()
+37326,2026-10-09T08:16:14Z,Scheduled Reminders - only offer tokens for the selected mapping's entity
+37328,2026-10-08T23:19:35Z,[NFC] UtilsSystem - Add missing annotations
+37329,2026-10-08T16:42:33Z,dev/core#6844 Fix cannot create recur with afform
+37330,2026-10-09T09:11:20Z,Remove dead code (no-op proportional-split arithmetic on payment-instrument change)
+37331,2026-10-09T09:11:45Z,Convert Registration::addParticipant() custom field handling to Api4
+37333,2026-10-08T17:21:48Z,CiviMail - Remove dead Mailing BAO code and stale FlexMailer comments
+37335,2026-10-09T22:06:09Z,CRM_Core_Error - Initialization errors in web context should return HTTP 500
+37340,2026-10-09T11:17:22Z,CRM_Utils_Cache - FileCache and Redis honour CIVICRM_DB_CACHE_TIMEOUT
+37342,2026-10-10T08:57:27Z,Add AI guidelines to PULL_REQUEST_TEMPLATE.md
+37347,2026-10-09T05:38:41Z,6.20
+37351,2026-10-09T11:21:54Z,Registration::addParticipant() - derive status_id/is_pay_later via getter
+37352,2026-10-09T09:52:53Z,Stop compiling & assigning line items in back office membership form
+37353,2026-10-09T15:15:51Z,hook_civicrm_altermailparams: groupName + abortMailSend params
+37354,2026-10-09T11:22:35Z,CRM_Member_Form - centralise contribution-value derivation in getContributionValues()
+37355,2026-10-09T13:50:10Z,Consolidate code to create soft credit
+37356,2026-10-12T12:59:42Z,"Registration::addParticipant() - derive id/registered_by_id, amount_level via getters"
+37359,2026-10-12T12:59:56Z,FinancialProcessor - use constructor properties instead of params on the recordFinancialAccounts() path
+37361,2026-10-09T14:17:58Z,dev/core#6006 standaloneusers - Fix online event registration for anonymous visitors on new installs
+37362,2026-10-09T14:33:56Z,6.20
+37363,2026-10-12T13:00:32Z,Fold recordMembershipContribution back into only caller
+37364,2026-10-10T08:55:49Z,Financial Processor - use more getters & setters for calculated changes
+37366,2026-10-09T14:33:54Z,6.20 to master
+37367,2026-10-09T15:11:44Z,regen after upmerge of regen
+37370,2026-10-10T07:30:28Z,CiviCampaign - Expose campaign nesting to the UI
+37373,2026-10-10T21:22:53Z,"Fix ts() calls with misplaced, missing or unused params"
+37374,2026-10-10T02:05:52Z,6.20
+37375,2026-10-16T02:32:03Z,ThankYou/Confirm - reduce form->set/get passing between the two pages
+37376,2026-10-12T13:00:42Z,Increase use of Order getters in event Confirm page
+37377,2026-10-13T16:48:50Z,"FinancialProcessor - add createLineItem()/reverseLineItem(), use reverseLineItem() for removed lines"
+37379,2026-10-16T08:50:03Z,Fix MySQL status check never warning about out-of-date MariaDB
+37380,2026-10-15T08:07:26Z,Avoid escaped quotes in ts() strings
+37381,2026-10-17T23:21:47Z,Build sentences from one ts() string with placeholders
+37382,2026-10-16T08:51:29Z,Keep ts() strings on one line and give them words
+37383,2026-10-16T08:53:54Z,Move block-level markup out of ts() strings
+37384,2026-10-10T19:40:36Z,6.20
+37386,2026-10-10T22:28:58Z,6.20
+37387,2026-10-10T22:28:56Z,6.20
+37388,2026-10-13T15:45:02Z,Fix D7 cache flushing regression
+37389,2026-10-16T00:46:41Z,Strict id tests4
+37390,2026-10-12T13:01:47Z,Unit Tests - Fix getting table name for Api4 entities
+37393,2026-10-12T14:12:36Z,Make lookup fast again for hierarchical entities
+37394,2026-10-13T20:41:00Z,Expose deceased date as filter in reports
+37400,2026-10-13T13:21:07Z,"Riverlea: notification dialogs / icons, tidy alignment, simplify css"
+37401,2026-10-13T13:57:24Z,[REF] SMS - Set autocomplete filters directly on form
+37402,2026-10-16T10:58:17Z,Strict id tests5 - civicrm_case_type
+37403,2026-10-13T13:50:53Z,Riverlea: cleanup default search list
+37404,2026-10-16T08:47:16Z,"Riverlea: applies dropdown-radius more consistently, merges some selectors"
+37405,2026-10-13T21:32:43Z,Changing the popup dialog layout to prevent buttons in the dialog footer from stacking
+37406,2026-10-16T08:36:14Z,Move membership receipt custom-field assignment to WorkflowMessage
+37407,2026-10-13T18:29:47Z,Refactor email form to use autocompletes
+37408,2026-10-14T15:21:37Z,Consolidate getPaymentParams on backoffice membership forms
+37409,2026-10-13T17:49:37Z,Clean up code to update top-level contribution in changeFeeSelections
+37410,2026-10-13T19:56:39Z,Move loading financial items to the constructor
+37412,2026-10-14T12:21:40Z,Ref - financial processor cleanup
+37413,2026-10-14T12:28:31Z,Code clean up in financial processor
+37414,2026-10-14T02:07:05Z,huh
+37419,2026-10-14T12:34:27Z,Remove extra spacing between Edit button and main table for custom data
+37421,2026-10-14T13:53:59Z,Import - Fix buggy ajax
+37422,2026-10-14T15:19:39Z,"FinancialProcessor - fix isReversalRequired() to compare financial account, not type"
+37423,2026-10-14T19:49:28Z,Financial processor - further cleanup
+37424,2026-10-14T16:46:02Z,Remove function noisily deprecated in 2023
+37425,2026-10-14T19:48:57Z,REF - Cleanup contactType lookups
+37426,2026-10-14T19:53:55Z,"Contact Cases with AdminUI: move buttons to a dropdown, add Assign to Another Client"
+37428,2026-10-14T23:55:57Z,Remove use of undeclared property _discountID
+37429,2026-10-15T20:10:47Z,Api3 - Remove code docs from Api3 Explorer
+37430,2026-10-15T12:23:12Z,Extensions - Stop crawling every extension's vendor/ and node_modules/ on each cache flush
+37431,2026-10-14T23:55:20Z,Tests - Stop building the service container twice before every headless test
+37434,2026-10-15T12:27:03Z,dev/core#1792 Contact delete - correct status message and redirect when trash is disabled
+37435,2026-10-19T09:51:32Z,dev/core#6863 fix translation of [Copy id n]
+37437,2026-10-17T03:17:48Z,Split create & update line item handling in financial processor
+37438,2026-10-16T08:36:57Z,Move card_type_id/pan_truncation handling out of recordFinancialAccounts
+37439,2026-10-15T14:32:17Z,Add Contributor Key Reminder action
+37440,2026-10-15T15:24:53Z,6.20
+37442,2026-10-15T18:00:06Z,dev/core#6865 - Fix Api4 authorization failure in SearchKit
+37443,2026-10-15T16:35:57Z,[REF] Remove unused groupNesting functions
+37445,2026-10-16T14:49:34Z,afGuiEditor - handle multiple join blocks in conditional editor
+37449,2026-10-15T20:34:13Z,ShutdownWorker - Pass a literal string to ts()
+37451,2026-10-16T00:45:50Z,6.20
+37457,2026-10-19T09:52:28Z,"Support ""Select Current User"" default in Afforms for multi-value fields"
+37458,2026-10-16T22:30:57Z,Api4TestBase - Enable components outside transaction
+37459,2026-10-16T08:38:35Z,Update contributor-key-reminder to use civicrm-builder
+37460,2026-10-16T05:22:40Z,Add beatrizpaula03 to contributor-key.yml
+37461,2026-10-16T10:48:11Z,dev/core#5958 Campaign dashboard - make required start date non-editable inline
+37462,2026-10-16T08:40:32Z,dev/core#5113 Open Case activity edit - don't depend on URL context to detect case activity form
+37464,2026-10-16T11:14:51Z,Strict ID - more tables 
+37465,2026-10-16T21:03:06Z,Event form - remove undeclared property _pid and add test for allow Confirmation handling
+37466,2026-10-16T12:09:55Z,Strict ID tests7
+37467,2026-10-16T13:09:33Z,Strict id tests8
+37468,2026-10-16T11:33:41Z,More Strict ID tables
+37469,2026-10-16T13:09:17Z,Strict id tests10
+37470,2026-10-16T13:57:38Z,Strict id tests11
+37472,2026-10-16T20:41:10Z,Strict id tests12
+37473,2026-10-19T09:51:06Z,"Transaction, API Kernel - Roll back on PHP errors, not only exceptions"
+37479,2026-10-16T21:01:27Z,Strict ID batch 3
+37480,2026-10-16T20:40:18Z,Scheduled reminders - Handle each recipient in their own locale
+37483,2026-10-16T20:39:32Z,SearchKit - Close the output buffer when saving a file fails
+37491,2026-10-19T09:49:53Z,"ManagedEntities, Menu, System Check - Skip and report one failing item on PHP errors, not only exceptions"
+37492,2026-10-16T20:38:34Z,API - Restore locale when an API call with a language fails
+37494,2026-10-17T22:19:43Z,Strict ID tests14
+37495,2026-10-16T20:30:43Z,Strict IDs: civicrm_membership_payment
+37497,2026-10-17T00:22:27Z,Use order function for getMembershipTypes
+37498,2026-10-16T23:43:47Z,Use writeRecord rather than create when generating financial data
+37499,2026-10-17T00:29:18Z,Clean up underlying BAO use in FinancialProcessor
+37501,2026-10-17T02:18:03Z,Fold setContextVariables back into preProcess
+37502,2026-10-17T01:17:49Z,Test Fix ups
+37504,2026-10-17T14:51:35Z,Reduce / simplify some form-to-form variable passing
+37505,2026-10-18T02:41:16Z,Make trxnID an explicit parameter of FinancialTrxn::recordFees()
+37506,2026-10-18T02:41:14Z,"Financial processor - early return on unpaid, not pay_later contributions"
+37507,2026-10-19T09:24:39Z,Move refund_trxn_id data-correction fix from BAO to v3 API
+37509,2026-10-17T08:24:37Z,Strict ID Batch 4 - no test changes
+37510,2026-10-17T08:38:43Z,Strict id tests17 - hard-coded id fixes
+37513,2026-10-17T14:49:55Z,Strict id tests18
+37514,2026-10-17T20:10:07Z,Strict ID - financial tables
+37515,2026-10-17T11:18:46Z,[dev/core#6328] Fix report export parameter checks
+37518,2026-10-17T22:18:51Z,Strict IDs: financial tables with hard-coded id fixes
+37519,2026-10-18T03:04:38Z,Strict id tests21
+37520,2026-10-17T22:21:25Z,Strict ID: Batch 6
+37521,2026-10-17T20:09:45Z,Event Cart Tab url correction
+37522,2026-10-19T09:25:31Z,Finish removing formValues variable from backoffice membership form
+37523,2026-10-18T03:58:38Z,Remove leading and trailing whitespace from ts() strings
+37524,2026-10-17T23:24:35Z,Keep labels and their punctuation in one ts() string
+37525,2026-10-17T21:39:23Z,CRM_Contact_Page_AJAX - Remove broken code from flipDupePairs
+37527,2026-10-17T23:36:50Z,Enabling invoicing does not add the invoices tab to the contact dashboard on non-English sites
+37532,2026-10-18T04:10:31Z,"Participant batch update has not completed pay-later contributions since 5.31, remove the dead code"
+37535,2026-10-18T03:15:04Z,Price field list always leaves the Tax Label and Tax Amount columns empty
+37536,2026-10-18T03:13:59Z,Remove hard-coded no-refund policy
+37537,2026-10-18T03:06:09Z,Fix back-office card payments not passing contribution ID and description to the processor
+37539,2026-10-19T12:23:44Z,Strict ID: batch 7
+37541,2026-10-19T04:09:54Z,Switch record_contribution path to apiv4 (preparatory to order api)
+37542,2026-10-18T12:03:26Z,Remove dead membership-creation code from online Order::create path
+37543,2026-10-18T23:54:07Z,Use class property not params to getToFinancialAccount
+37544,2026-10-18T12:06:16Z,6.20
+37545,2026-10-19T09:25:41Z,Batchtest gettestform
+37547,2026-10-19T01:03:21Z,Fix: Clearing a Money or Float custom field saves 0 instead of empty
+37553,2026-10-18T19:19:32Z,Fix: Deleting a payment processor deletes test processors of other domains
+37555,2026-10-18T20:21:52Z,6.20 to master 
+37556,2026-10-19T09:26:01Z,dev/core#6873 Fix recordAdjustmentTrxn() recording the wrong total_amount
+37558,2026-10-19T00:27:31Z,Fix CRM_Utils_Date::intervalAdd skipping a month at month end (Jan 31 + 1 month = Mar 3)
+37560,2026-10-19T01:25:34Z,Update test to apiv4 / getTestForm
+37561,2026-10-19T01:25:15Z,Update test class to use getTestForm
+37562,2026-10-19T02:36:48Z,Test class - RecurFormsTrait - convert to the v4 Order api
+37563,2026-10-19T02:50:11Z,"Registration/Confirm - drop dead/replaceable ->set()s in confirmPostProcess(), extract CMSUser"
+37568,2026-10-19T09:42:55Z,Use frontend_title in event transfer etc subjects
+37575,2026-10-19T13:14:13Z,"Riverlea: dropdown-heading styling, contact-summary dropdown gap"
+37576,2026-10-19T14:59:08Z,Strict ID: group & membership
+37577,2026-10-19T13:33:58Z,afGuiEditor - fix if entity has multiple joins across multiple fieldsets
+37579,2026-10-19T18:39:41Z,Batch Entry - Remove extra script accidentally duplicated in 2013
+37583,2026-10-19T19:10:22Z,6.20 to master
+37977,2026-11-09T01:35:18Z,APIv4 - Key the field spec cache by the active locale
+37978,2026-11-09T01:36:34Z,[NFC] Remove PledgePayment date assignments that never reach the database
+37981,2026-11-09T01:40:03Z,Truncate very long SQL error messages in logs
+37983,2026-11-09T01:46:52Z,Remove the deprecated xls and doc print modes and unused help files
