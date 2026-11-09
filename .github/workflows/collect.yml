@@ -29,6 +29,8 @@ jobs:
     timeout-minutes: ${{ inputs.back && 350 || 55 }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: main  # a run that waited behind another one starts from the latest results
       - name: Collect
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
