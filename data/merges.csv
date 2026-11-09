@@ -715,3 +715,95 @@ number,merged_at,title
 37976,2026-11-09T02:09:09Z,"Tests, CodeGen - Delete unused test and seed generator functions"
 37980,2026-11-09T02:02:37Z,Roll back the transaction on PHP errors in Contribution create and API replace
 37982,2026-11-09T01:57:32Z,(NFC) Remove Smarty templates nothing loads
+34934,2026-02-27T11:35:26Z,Deprecate `getProcessorForEntity()`
+35748,2026-09-22T15:24:26Z,"dev/core#6509, dev/core#4354 - move activity assignee notification to BAO layer"
+36566,2026-08-24T07:45:48Z,GitHub Actions: Support /lint alias and default target for /rebase
+36712,2026-09-21T20:05:22Z,Afform - Fix silent data loss when Max Length exceeds the field's limit
+36803,2026-09-19T18:40:10Z,APIv4 - Fix SQL syntax error when contact group filter resolves to an empty list
+36853,2026-09-17T20:09:49Z,ContributionPage - add option to set a static redirect in place of dynamic receipt
+36876,2026-09-20T09:25:09Z,Trim string inputs before saving
+36882,2026-09-23T05:07:41Z,Add standalone logout event
+36903,2026-09-23T10:19:15Z,Simplify card assignment in back office form
+36918,2026-09-17T08:23:28Z,Fix master-only regression: free/no-contribution registrations lost their line items
+36941,2026-09-22T15:59:27Z,dev/core#6773 Update Order.create apiv4 to support multiple lines for one to-be-created entity
+36955,2026-09-21T14:53:03Z,Add validation for the event location fields in event online receipt
+36960,2026-09-18T04:02:42Z,dev/core#6778: Sort other languages for translations by precedence order
+36962,2026-09-17T19:35:22Z,CiviMail - detect a stale recipient count properly and mark it in the UI
+36965,2026-09-18T10:18:54Z,Api v4 conversion in test class
+36967,2026-09-21T14:49:01Z,AdminUI - Move Administer Profiles to core
+36968,2026-09-21T14:44:19Z,Convert backoffice membership form test to use form test wrapper
+36969,2026-09-21T14:50:10Z,Clarity membership type access in BackOffice membership forms
+36970,2026-09-22T00:38:01Z,"dev/core#6784 - CiviCRM Membership / Members with Multiple Memberships: Pre-tick every membership the contact holds on the contribution page renewal form, not just the last one 🪲💰🪲💰"
+36971,2026-09-21T15:25:37Z,"dev/core#6754: Missing UI to set Tags on Events, despite Tags being configurable as ""used for"" Events"
+36972,2026-09-18T12:37:38Z,APIv3 Explorer - replace lodash calls with native equivalents
+36974,2026-09-18T13:09:16Z,CiviMail - replace lodash calls with native equivalents
+36975,2026-09-22T15:59:09Z,Legacyprofiles - Move code out of core and clean up
+36976,2026-09-18T17:11:15Z,Afform - replace lodash calls with native equivalents
+36977,2026-09-18T17:12:57Z,SearchKit - replace lodash calls with native equivalents
+36979,2026-09-18T17:13:43Z,CiviCase - replace lodash calls with native equivalents
+36980,2026-09-19T18:40:28Z,SqlGenerator - Do not drop foreign keys while generating SQL
+36981,2026-09-18T17:27:00Z,Core Angular - replace lodash calls with native equivalents
+36982,2026-09-18T17:49:54Z,Core JS - replace lodash calls with native equivalents
+36985,2026-09-18T18:50:17Z,"Contact Query - unpack operator arrays in street_address, street_number and notes"
+36987,2026-09-21T14:50:02Z,SearchKit - Fix sql function UI with non-string inputs
+36988,2026-09-20T09:23:21Z,SearchKit - Angular performance improvements
+36989,2026-09-20T09:26:06Z,Fix repeated class attributes on the same element
+36990,2026-09-21T14:51:50Z,Extend pre hook getters to post / postCommit hooks
+36991,2026-09-21T14:52:33Z,Civi\Test - Install SearchKit before the first rebuild of a headless build
+36993,2026-09-21T14:50:18Z,Construct membership renewal line items via CRM_Financial_BAO_Order
+36994,2026-09-21T14:50:27Z,Deprecate passing incomplete line items into Contribution.create
+36995,2026-09-21T14:50:37Z,Split getLineItemsToAlter's add case out into getLineItemsToAdd
+36997,2026-09-21T12:39:09Z,Fix moved functions not to be static
+36998,2026-09-24T15:02:11Z,afForm - support no tokens in replaceTokens
+37001,2026-09-22T00:37:12Z,core/dev#6787: replace variable_get with config_get
+37003,2026-09-22T16:00:25Z,Fix Add to Group form when reached from Advanced Search
+37006,2026-09-22T15:56:21Z,Extract getFullLineItems within BAO_Contribution.add
+37007,2026-09-21T22:51:17Z,UFGroup - Deprecate unused function
+37008,2026-09-23T10:19:30Z,Move the filling on missing line item data earlier
+37009,2026-09-21T23:17:24Z,Fix recognition date from membership renewal form (master only regression
+37010,2026-09-21T22:49:27Z,Api4 - Ensure cached get works with row_count
+37011,2026-09-22T01:26:20Z,dev/core#6789 Afform - Fix default value lookup
+37012,2026-09-22T07:28:58Z,CustomField - Set step to 'any' for floats & money
+37013,2026-09-22T16:01:52Z,CustomField - Improve UX & DX with better metadata
+37014,2026-09-22T04:20:01Z,6.19
+37015,2026-09-22T14:28:09Z,Handle validation errors in the Batch template hook
+37016,2026-09-22T15:56:40Z,Fix Contribution confirm form to pass in the correct membership_id
+37017,2026-09-22T15:57:06Z,Update ContributionPage.submit to not rely on form hacks
+37018,2026-09-22T12:48:19Z,Clear the last straightforwardly-convertible lodash calls
+37022,2026-09-23T12:55:28Z,Lodash debounce helper
+37023,2026-09-23T10:19:56Z,dev/core#6793 Remove broken code for offline contribution receipt
+37024,2026-09-23T01:51:55Z,Api4Explorer - Dynamically reload options
+37025,2026-09-23T10:20:30Z,Participant_Form (backoffice) - clean up previously shared code to write the activity subject
+37026,2026-09-23T10:20:40Z,Extract sendEmail on participant form
+37027,2026-09-23T10:20:50Z,Make batch entity importable - add importable fields
+37028,2026-09-24T21:19:22Z,ensure CRM.config.entityRef filters are JS arrays
+37029,2026-09-23T10:21:03Z,Migrate CRM_Contact_Import_Form_DataSourceTest to getTestForm()
+37030,2026-09-24T14:51:50Z,Migrate CRMTraits_Import_ParserTrait to getTestForm()
+37032,2026-09-23T23:02:30Z,Remove unreferenced importProgress.tpl
+37035,2026-09-24T00:08:09Z,Remove 7 deprecated functions from CRM_Contribute_BAO_Contribution
+37036,2026-09-24T14:55:14Z,Remove 8 deprecated functions from CRM_Core_Config and CRM_Core_BAO_Domain
+37038,2026-09-24T02:28:43Z,Remove 8 deprecated functions from CRM_Campaign_BAO_Campaign and CRM_Campaign_BAO_Survey
+37039,2026-09-24T00:13:38Z,"Remove 10 deprecated functions from CRM_ACL_API, CRM_ACL_BAO_ACL and CRM_ACL_BAO_ACLEntityRole"
+37042,2026-09-24T00:12:19Z,Remove 14 deprecated functions from CRM_Member_BAO_* classes
+37043,2026-09-24T00:06:38Z,Remove 6 deprecated functions from CRM_Core_BAO_LocationType and CRM_Core_BAO_Website
+37044,2026-09-24T00:10:49Z,CustomField - Fix settings form for existing fields
+37047,2026-09-24T14:55:52Z,dev/core#6799 AdminUI - Format custom field date columns
+37050,2026-09-24T01:46:07Z,Move sending of participant emails to within the loop
+37051,2026-09-24T14:52:10Z,Fix BAO_Order::getOverrideTotalAmount() treating an explicit 0 as unset
+37052,2026-09-24T00:06:00Z,6.19 to master
+37053,2026-09-24T22:58:28Z,"Remove interactions with unused $params, move non-shared code into caller"
+37054,2026-09-24T14:52:59Z,Backoffice form - extract processParticipant
+37056,2026-09-24T14:53:10Z,Fix getTestform request leak
+37062,2026-09-24T18:19:16Z,remove unreachable code
+37065,2026-09-24T21:15:44Z,Remove 11 deprecated functions from CRM_Financial_BAO_* classes
+37066,2026-09-24T21:12:33Z,Remove 6 deprecated functions from CRM_Price_BAO_* classes
+37067,2026-09-24T23:05:00Z,Remove 12 deprecated functions from CRM_Core_BAO_* classes
+37068,2026-09-24T23:05:53Z,Remove 12 deprecated functions from CRM_Contact_BAO_* classes
+37069,2026-09-24T23:04:13Z,Remove 9 deprecated functions from CRM_Mailing_* classes
+37070,2026-09-24T23:02:02Z,"Remove deprecated functions in Badge, PCP, Case, Report, and Event classes"
+37071,2026-09-24T23:00:48Z,"Remove deprecated functions in Pledge, Event, and Mailing classes"
+37073,2026-09-24T23:01:05Z,6.19
+37074,2026-09-24T22:58:48Z,"Stop setting unused property, remove another unused property"
+37076,2026-09-25T01:52:47Z,Improve peformance of getEntityStats by using faster method if we hav…
+37077,2026-09-25T01:53:15Z,6.19
+37973,2026-11-09T03:23:43Z,Sybunt report: stop dropping the last donor as a grand total
