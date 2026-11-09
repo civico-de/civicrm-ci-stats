@@ -18,6 +18,7 @@ LEFT, RIGHT, TOP, BOTTOM = 74, 12, 14, 28
 MINUTE_STEPS = (60, 120, 300, 600, 900, 1800, 3600, 7200)
 COUNT_STEPS = (1, 2, 5, 10, 20, 50, 100)
 SERIES_SLOTS = 8
+UNKNOWN_HOST = "host unknown"
 
 LIGHT = """color-scheme:light;--surface:#fcfcfb;--text:#0b0b0b;--text-2:#52514e;--grid:#e6e5e0;--line:#b5b4ad;
 --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--s7:#6250d6;--s8:#e34948"""
@@ -216,9 +217,13 @@ def change_title(change):
     return f'{"down" if change["change"] < 0 else "up"} {abs(change["change"]) * 100:.0f}%'
 
 
-def headline(listed):
+def headline(listed, measured):
     if not listed:
-        return "No lasting change detected in the collected data."
+        if not measured:
+            return "No comparable jobs in this period."
+        if any(job["node"] for job in measured):
+            return "No lasting change detected in the collected data."
+        return "Not checked for changes: these jobs have no recorded host."
     latest = listed[0]
     scope = latest["suites"][0] if len(latest["suites"]) == 1 else f'{len(latest["suites"])} suites'
     return f'Latest change: test time {change_title(latest)} in {scope} around {latest["at"].strftime("%Y-%m-%d")}'
@@ -314,17 +319,22 @@ def hero_chart(comparable, config, period, unit, marked, first, last):
         {"Summed time": totals}, {"Summed time": "var(--s1)"}, marked, fmt_seconds, False, first, last, hero=True)
 
 
-def host_charts(comparable, config, period, unit, marked, first, last):
+def host_of(job):
+    return job["node"] or UNKNOWN_HOST
+
+
+def host_charts(measured, config, period, unit, marked, first, last):
     """Return the host legend with every chart it scopes: one per suite and the load per host."""
-    nodes = sorted({job["node"] for job in comparable})
-    colors = {node: f"var(--s{index + 1})" for index, node in enumerate(nodes[:SERIES_SLOTS])}
-    for node in nodes[SERIES_SLOTS:]:
+    known = sorted({job["node"] for job in measured if job["node"]})
+    colors = {node: f"var(--s{index + 1})" for index, node in enumerate(known[:SERIES_SLOTS])}
+    nodes = known + ([UNKNOWN_HOST] if any(not job["node"] for job in measured) else [])
+    for node in nodes[len(colors):]:
         colors[node] = "var(--text-2)"
     grid, charted = "", []
     for suite in sorted(config):
-        selected = [job for job in comparable if job["suite"] == suite and (job["bldtype"], job["bkprof"]) == config[suite]]
+        selected = [job for job in measured if job["suite"] == suite and (job["bldtype"], job["bkprof"]) == config[suite]]
         charted += selected
-        series = {node: medians_per(period, [(detect.parse_time(j["started"]).date(), float(j["duration"])) for j in selected if j["node"] == node]) for node in nodes}
+        series = {node: medians_per(period, [(detect.parse_time(j["started"]).date(), float(j["duration"])) for j in selected if host_of(j) == node]) for node in nodes}
         series = {node: days for node, days in series.items() if days}
         grid += line_chart(suite, f"{config[suite][0]}, {config[suite][1]}, median per {unit} and host", series, colors, marked, fmt_seconds, True, first, last)
     load = defaultdict(list)
@@ -341,17 +351,19 @@ def host_charts(comparable, config, period, unit, marked, first, last):
 
 def render_page(heading, stamp, jobs, listed, marked, older, nav):
     """Render one page: listed changes as text, marked changes as dashed lines in the charts."""
-    comparable = [job for job in jobs if detect.is_comparable(job)]
+    measured = [job for job in jobs if detect.is_measured(job)]
     changes_html = "".join(change_html(change) for change in listed)
     hero, charts = "", ""
-    if comparable:
-        days_seen = [detect.parse_time(job["started"]).date() for job in comparable]
+    if measured:
+        days_seen = [detect.parse_time(job["started"]).date() for job in measured]
         last = max(days_seen)
         period, unit = (week_start, "week") if (last - min(days_seen)).days > MAX_DAILY_DAYS else (lambda day: day, "day")
         first = period(min(days_seen))
-        config = usual_config(comparable)
-        hero = hero_chart(comparable, config, period, unit, marked, first, last)
-        charts = host_charts(comparable, config, period, unit, marked, first, last)
+        config = usual_config(measured)
+        hero = hero_chart(measured, config, period, unit, marked, first, last)
+        charts = host_charts(measured, config, period, unit, marked, first, last)
+    without_host = any(job["node"] for job in measured) and not all(job["node"] for job in measured)
+    coverage = f'<p class="sub">Jobs without a recorded host appear as "{UNKNOWN_HOST}" in the charts of their configuration and are not checked for changes.</p>' if without_host else ""
     changes_section = (
         f'<h2>Detected changes</h2><p class="sub">Successful PR runs against master only. Test time reflects the test harness as well as the code, '
         f"so a change here is a lead, not a measurement of CiviCRM's own speed. A change needs {detect.WINDOW} runs per host after it before it can appear.</p>{changes_html}{older}"
@@ -361,8 +373,8 @@ def render_page(heading, stamp, jobs, listed, marked, older, nav):
         f'<title>{esc(heading)}</title><style>{STYLE}</style></head><body><div class="page">'
         f"<header><h1>{esc(heading)}</h1>{nav}</header>"
         f'<main><p class="lede">How long the civicrm-core pull request tests take on test.civicrm.org, and when that changes.</p>'
-        f'<h2 class="headline">{esc(headline(listed))}</h2>{hero}{changes_section}{charts}</main>'
-        f'<footer class="sub">{esc(stamp)}{len(comparable)} comparable jobs of {len(jobs)} collected. '
+        f'<h2 class="headline">{esc(headline(listed, measured))}</h2>{coverage}{hero}{changes_section}{charts}</main>'
+        f'<footer class="sub">{esc(stamp)}{len(measured)} measured jobs of {len(jobs)} collected. '
         f'<a href="https://github.com/civico-de/civicrm-ci-stats">Source and data</a></footer>'
         f'<div id="tip" role="status"></div></div><script>{SCRIPT}</script></body></html>\n'
     )

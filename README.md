@@ -36,7 +36,8 @@ Everything uses the Python standard library. There is no build step.
 | `data/cursor.txt` | Last batch id that is fully handled going forward |
 
 `duration` is the time Duderino reports for the job and is empty for failed jobs.
-`wall` is `completed` minus `started` and includes setup. Individual test names and
+`node` is empty on older jobs: they are charted as "host unknown" and left out of detection,
+which compares hosts. `wall` is `completed` minus `started` and includes setup. Individual test names and
 timings are not collected, because the Jenkins reports need a login.
 
 Batch types come from the all-jobs page and `data/jobs/`. A type that appears in
@@ -70,7 +71,8 @@ Two labels help interpretation:
 
 Merged PRs in the window are ranked by how many affected runs match the old level before
 the merge and the new level after it; a PR's own run counts as after. All PRs within 3
-points of the best fit are listed. They are candidates, not established causes.
+points of the best fit are listed. The start of the window ignores series with no run for
+more than 48 hours around the step, unless all of them have such a gap. They are candidates, not established causes.
 
 ## Running
 

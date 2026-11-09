@@ -141,5 +141,34 @@ class Parallel(unittest.TestCase):
         self.assertNotIn("parallel", rows[0])
 
 
+class MergeWindow(unittest.TestCase):
+    NOON = datetime(2026, 10, 20, 12, tzinfo=UTC)
+
+    def event(self, days_before, hours_after=1):
+        return {"last_before": self.NOON - timedelta(days=days_before), "first_after": self.NOON + timedelta(hours=hours_after)}
+
+    def test_a_long_idle_series_does_not_widen_the_window(self):
+        dense, idle = self.event(0.5), self.event(10)
+        self.assertEqual(detect.merge_window([dense, idle]), (dense["last_before"], dense["first_after"]))
+
+    def test_a_late_idle_series_still_extends_the_end_of_the_window(self):
+        dense, idle = self.event(0.5), self.event(10, hours_after=30)
+        self.assertEqual(detect.merge_window([dense, idle]), (dense["last_before"], idle["first_after"]))
+
+    def test_window_covers_every_active_series(self):
+        early, late = self.event(1), self.event(0.25, hours_after=6)
+        self.assertEqual(detect.merge_window([early, late]), (early["last_before"], late["first_after"]))
+
+    def test_only_idle_series_keep_their_full_window(self):
+        one, other = self.event(10), self.event(5)
+        self.assertEqual(detect.merge_window([one, other]), (one["last_before"], other["first_after"]))
+
+    def test_jobs_without_a_host_are_measured_but_not_comparable(self):
+        job = next(row for row in simulate.jobs(1, days=1) if detect.is_comparable(row))
+        without = {**job, "node": ""}
+        self.assertTrue(detect.is_measured(without))
+        self.assertFalse(detect.is_comparable(without))
+
+
 if __name__ == "__main__":
     unittest.main()

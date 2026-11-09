@@ -13,6 +13,7 @@ CLUSTER_GAP = timedelta(hours=8)  # events this close belong to one change
 MIN_NODES, MIN_SERIES, MIN_NODES_ONE_SUITE = 2, 6, 3
 TEST_COUNT_TOLERANCE = 0.05
 FIT_MARGIN = 0.03  # candidates this close to the best fit stay listed
+MAX_WINDOW_GAP = timedelta(hours=48)  # a series idle for longer around a step says little about when it happened
 
 
 def parse_time(value):
@@ -23,13 +24,18 @@ def is_control(suite):
     return "karma" in suite
 
 
-def is_comparable(job):
+def is_measured(job):
     """Successful PR runs against master of suites whose runtime is meaningful."""
     return (
         job["batch_type"] == "CiviCRM-PR" and job["civiver"] == "master" and job["outcome"] == "SUCCESS"
-        and job["ornery"] == "disable" and job["duration"] != "" and job["started"] != "" and job["node"] != ""
+        and job["ornery"] == "disable" and job["duration"] != "" and job["started"] != ""
         and ("phpunit" in job["suite"] or is_control(job["suite"]))
     )
+
+
+def is_comparable(job):
+    """Measured jobs with a known host; detection compares hosts, so it needs one."""
+    return is_measured(job) and job["node"] != ""
 
 
 def tests_of(job):
@@ -133,8 +139,14 @@ def rank_candidates(candidates, real):
     return sorted(({**m, "fit": fit_of(m, runs)} for m in candidates), key=lambda m: (-m["fit"], m["at"]))
 
 
+def merge_window(real):
+    """Span the runs around the step; long-idle series do not move the start unless all were idle."""
+    dense = [e for e in real if e["first_after"] - e["last_before"] <= MAX_WINDOW_GAP] or real
+    return min(e["last_before"] for e in dense), max(e["first_after"] for e in real)
+
+
 def build_change(group, real, suites, nodes, merges):
-    low, high = min(e["last_before"] for e in real), max(e["first_after"] for e in real)
+    low, high = merge_window(real)
     moments = sorted(e["at"] for e in real)
     middle = moments[len(moments) // 2]
     candidates = rank_candidates([m for m in merges if low <= m["at"] <= high], real)

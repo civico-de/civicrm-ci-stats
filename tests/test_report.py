@@ -66,7 +66,7 @@ class Render(unittest.TestCase):
 
     def test_change_in_one_suite_is_named(self):
         change = {"at": datetime(2026, 11, 1, 12, tzinfo=UTC), "change": 2.19, "suites": ["phpunit-api4"]}
-        self.assertEqual(report.headline([change]), "Latest change: test time up 219% in phpunit-api4 around 2026-11-01")
+        self.assertEqual(report.headline([change], []), "Latest change: test time up 219% in phpunit-api4 around 2026-11-01")
 
     def test_every_drawn_point_has_a_tooltip_row_at_its_own_date(self):
         page = overview(simulate.jobs(1, days=5), [], [])
@@ -117,9 +117,28 @@ class Render(unittest.TestCase):
         counts = re.findall(r"\(n=(\d+)\)", page[page.index("Load per host"):])
         self.assertEqual(sum(int(count) for count in counts), len(usual))
 
+    def test_jobs_without_a_host_are_charted_but_not_claimed_as_checked(self):
+        rows = [{**job, "node": ""} for job in simulate.jobs(1, days=5)]
+        page = overview(rows, [], [])
+        self.assertIn("Not checked for changes", page)
+        self.assertNotIn("No lasting change", page)
+        self.assertIn(f'data-node="{report.UNKNOWN_HOST}"', page)
+        self.assertNotIn("Load per host", page)
+
+    def test_partly_unknown_hosts_keep_known_colours_and_say_so(self):
+        known = overview(simulate.jobs(1, days=5), [], [])
+        rows = simulate.jobs(1, days=5)
+        mixed = overview(rows + [{**job, "task_id": f"u{index}", "node": ""} for index, job in enumerate(rows)], [], [])
+        self.assertIn('appear as "host unknown"', mixed.replace("&quot;", '"'))
+        for node in ("test-3", "test-4", "test-5"):
+            pattern = rf'<span class="key" style="background:(var\(--\w+\))"></span>{node}<'
+            self.assertEqual(re.search(pattern, known).group(1), re.search(pattern, mixed).group(1))
+        self.assertRegex(mixed, r'background:var\(--text-2\)"></span>host unknown<')
+
     def test_empty_data_renders(self):
         page = overview([], [], [])
-        self.assertIn("No lasting change detected", page)
+        self.assertIn("No comparable jobs in this period.", page)
+        self.assertNotIn("No lasting change", page)
         self.assertIn("never", page)
 
     def test_axis_ticks_are_round_and_reach_the_data(self):
