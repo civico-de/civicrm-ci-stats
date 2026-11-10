@@ -813,3 +813,4 @@ number,merged_at,title
 37944,2026-11-10T05:18:07Z,Fix error message for required yes/no custom field
 37953,2026-11-10T05:16:17Z,Performance - Faster getSupportedFields
 37992,2026-11-10T02:19:17Z,embedded SearchKit in submission forms works for public/'secret link' users
+37993,2026-11-10T11:44:07Z,allow embedding SearchKits in FormBuilder for users who aren't logged in
