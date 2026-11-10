@@ -809,3 +809,4 @@ number,merged_at,title
 37973,2026-11-09T03:23:43Z,Sybunt report: stop dropping the last donor as a grand total
 37747,2026-11-09T14:35:43Z,update Inter font to v20 and add 600italic variant
 37985,2026-11-09T15:56:58Z,(NFC) ContactAclTest - Save 8 minutes on every api4 test run
+37995,2026-11-10T01:15:26Z,Merge 6.21 to master
