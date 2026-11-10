@@ -814,3 +814,15 @@ number,merged_at,title
 37953,2026-11-10T05:16:17Z,Performance - Faster getSupportedFields
 37992,2026-11-10T02:19:17Z,embedded SearchKit in submission forms works for public/'secret link' users
 37993,2026-11-10T11:44:07Z,allow embedding SearchKits in FormBuilder for users who aren't logged in
+31413,2026-11-10T20:04:47Z,Add setting to allow/prevent multiple group parents
+36390,2026-08-01T02:08:53Z,"dev/core#6669 - SearchKit - Clean up display event handler, visibility poller and debounced searches on $destroy"
+36391,2026-08-04T16:04:39Z,SearchKit - Fix ReferenceError and overlong aliases in the function builder
+36402,2026-08-03T21:38:02Z,"Fix four small JavaScript defects (listeners, wysiwyg keydown, ChartKit column fallback)"
+36407,2026-08-04T16:09:08Z,APIv4 - Throw exception on duplicate alias in SELECT clause
+36711,2026-09-07T21:44:20Z,civiimport - Fail the spreadsheet rule instead of crashing when no file arrived
+37488,2026-11-10T20:20:30Z,"Contribution, membership, CiviMail - Log errors in side steps instead of undoing the main step"
+37975,2026-11-10T18:42:13Z,REF - Delete unused functions
+38005,2026-11-10T18:14:37Z,(NFC) CaseTypeTest - Do not assume IDs for seeded case types
+38008,2026-11-10T21:41:49Z,Warn when legacy jQuery accordions are used
+38010,2026-11-10T20:53:50Z,6.21
+38015,2026-11-10T23:14:48Z,(REF) CiviGenericProvider - Simplify+harden replaceUrlTokens()
