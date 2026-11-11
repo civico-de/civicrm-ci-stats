@@ -828,3 +828,7 @@ number,merged_at,title
 38015,2026-11-10T23:14:48Z,(REF) CiviGenericProvider - Simplify+harden replaceUrlTokens()
 38006,2026-11-11T14:35:18Z,Dashboard news feed: fix the unread count
 38020,2026-11-11T14:51:37Z,[REF] OAuth - Add shared base class for refresh actions
+37618,2026-11-11T16:22:55Z,Afform - Translate an extension's forms with the extension's own translations
+37639,2026-11-11T16:21:35Z,"SearchKit - Translate every user-facing text of a display, not only labels and link texts"
+37965,2026-11-11T16:26:26Z,Translation - Refresh ts() after a translation is saved
+38004,2026-11-11T17:44:21Z,Custom - Move AdminUI forms into core
