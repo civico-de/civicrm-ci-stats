@@ -826,3 +826,5 @@ number,merged_at,title
 38008,2026-11-10T21:41:49Z,Warn when legacy jQuery accordions are used
 38010,2026-11-10T20:53:50Z,6.21
 38015,2026-11-10T23:14:48Z,(REF) CiviGenericProvider - Simplify+harden replaceUrlTokens()
+38006,2026-11-11T14:35:18Z,Dashboard news feed: fix the unread count
+38020,2026-11-11T14:51:37Z,[REF] OAuth - Add shared base class for refresh actions
