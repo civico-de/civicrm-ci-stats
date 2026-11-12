@@ -832,3 +832,26 @@ number,merged_at,title
 37639,2026-11-11T16:21:35Z,"SearchKit - Translate every user-facing text of a display, not only labels and link texts"
 37965,2026-11-11T16:26:26Z,Translation - Refresh ts() after a translation is saved
 38004,2026-11-11T17:44:21Z,Custom - Move AdminUI forms into core
+37433,2026-11-12T00:20:09Z,   dev/core#6314 Membership view - respect edit/delete permissions for Edit and Delete buttons
+37552,2026-11-12T00:09:15Z,Fix: Manually merging contacts without their memberships can leave inherited memberships behind
+37554,2026-11-12T00:21:05Z,Fix is_monetary selector
+37621,2026-11-12T00:14:17Z,"dev/core#6884 Afform: CustomGroup.getAfforms fails with ""API (Event, getFields) does not exist"" "
+37712,2026-11-12T00:37:21Z,FileCache: Only prefetch when explicitly requested
+37857,2026-11-12T00:31:13Z,Riverlea: fixes Joomla legibility regressions (from Bootstrap clash)
+37979,2026-11-12T00:10:07Z,Clear last_run_end when a scheduled job starts
+37997,2026-11-11T23:22:46Z,dev/core#6922 - Keep a cancelled recurring contribution cancelled when a payment is recorded
+38017,2026-11-12T00:42:27Z,[NFC] APIv4 - Dedupe identical functions
+38024,2026-11-11T23:21:28Z,AGENTS.md - Add translation conventions
+38025,2026-11-12T00:23:30Z,Logging: don't compare ON UPDATE CURRENT_TIMESTAMP columns in update …
+38028,2026-11-11T23:22:11Z,"Afform, SearchKit - Name icon-only admin controls"
+38030,2026-11-12T02:43:49Z,"Name icon-only links in option, tag and API Explorer templates"
+38031,2026-11-11T23:20:02Z,core#6930: Form submitters can't set relationship_type_id
+38032,2026-11-11T23:19:11Z,dev/core#6918 Add weight to action links passed to CRM_Core_Action::formLink()
+38034,2026-11-11T23:42:46Z,Deprecate unused CRM_Case_Page_Tab::links()
+38039,2026-11-12T00:57:25Z,Remove writes to local copies that never take effect
+38043,2026-11-12T02:49:44Z,Pledge Detail report - Add up the pledge count across currencies
+38044,2026-11-12T00:38:06Z,6.21 to master
+38045,2026-11-12T01:43:53Z,Remove local variables that are assigned and never read
+38046,2026-11-12T02:30:19Z,Remove the unused formatViewValue helpers
+38047,2026-11-12T02:50:46Z,Remove failure tests from RelationshipType test
+38053,2026-11-12T03:41:04Z,Switch some test calls to apiv4
