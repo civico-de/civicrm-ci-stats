@@ -855,3 +855,9 @@ number,merged_at,title
 38046,2026-11-12T02:30:19Z,Remove the unused formatViewValue helpers
 38047,2026-11-12T02:50:46Z,Remove failure tests from RelationshipType test
 38053,2026-11-12T03:41:04Z,Switch some test calls to apiv4
+38049,2026-11-12T04:21:31Z,Remove functions noisily deprecated during lockdown
+38051,2026-11-12T04:21:55Z,Fix tag form to use apiv4
+38055,2026-11-12T04:43:01Z,Remove test that doesn't seem to test
+38056,2026-11-12T06:30:35Z,Tests - Use array_column instead of CRM_Utils_Array::collect
+38058,2026-11-12T12:15:23Z,Switch WidgeTest to apiv4
+38059,2026-11-12T12:19:02Z,Remove dependence on apiv3 TestTrait from ContactTestTrait
