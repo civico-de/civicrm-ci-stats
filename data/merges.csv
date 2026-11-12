@@ -861,3 +861,14 @@ number,merged_at,title
 38056,2026-11-12T06:30:35Z,Tests - Use array_column instead of CRM_Utils_Array::collect
 38058,2026-11-12T12:15:23Z,Switch WidgeTest to apiv4
 38059,2026-11-12T12:19:02Z,Remove dependence on apiv3 TestTrait from ContactTestTrait
+37898,2026-11-12T17:56:18Z,dev/core#6911 CiviMail - Keep child job windows stable when recipients become undeliverable
+38018,2026-11-12T17:42:51Z,APIv4 - Add FILESIZE function to show sizes as KiB/MiB/GiB
+38042,2026-11-12T15:38:24Z,SmartyCompatibility - Remove the broken register_function() shim
+38057,2026-11-12T13:57:02Z,Move ACL test from apiv3 suite  to Civi\Entity
+38060,2026-11-12T13:36:00Z,Switch PayflowProTest to apiv4
+38065,2026-11-12T15:41:08Z,Joomla - Report a failed user registration from createUser()
+38067,2026-11-12T16:08:09Z,Fix fatal error on contribution page with a fixed-period premium
+38073,2026-11-12T16:18:45Z,Riverlea: dev/user-interface#103 - adds variable for trash/remove icon
+38074,2026-11-12T20:40:37Z,"Afform: dev/user-interface#104, changes icon on repeat elements from ban to trash"
+38078,2026-11-12T20:34:42Z,Fix the civilint reports on master
+38079,2026-11-12T17:17:14Z,[REF] restrict to active entities above the loop rather than inside
