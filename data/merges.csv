@@ -879,3 +879,4 @@ number,merged_at,title
 38082,2026-11-13T00:34:18Z,Switch CRM/Contact tests with few api calls to apiv4
 38084,2026-11-13T01:06:54Z,Move CRM_ACL_ListTest to Civi\Permission\ACLListTest
 38085,2026-11-12T22:43:11Z,"[REF] searchDisplayBaseTrait - less ctrl, more this"
+37957,2026-11-13T08:34:06Z,Settings - Give constant settings a global_name and load them from the environment
