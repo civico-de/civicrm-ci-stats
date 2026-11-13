@@ -872,3 +872,10 @@ number,merged_at,title
 38074,2026-11-12T20:40:37Z,"Afform: dev/user-interface#104, changes icon on repeat elements from ban to trash"
 38078,2026-11-12T20:34:42Z,Fix the civilint reports on master
 38079,2026-11-12T17:17:14Z,[REF] restrict to active entities above the loop rather than inside
+36600,2026-11-13T01:16:32Z,Add Composite Index On Mailing Recipients Table
+38076,2026-11-12T23:19:02Z,Cleanup - Refactor out some calls to CRM_Utils_Array::collect
+38077,2026-11-13T01:39:24Z,Merge 6.21 to master
+38081,2026-11-12T23:18:16Z,"Fix is-public flag on cancel recurring, update billing"
+38082,2026-11-13T00:34:18Z,Switch CRM/Contact tests with few api calls to apiv4
+38084,2026-11-13T01:06:54Z,Move CRM_ACL_ListTest to Civi\Permission\ACLListTest
+38085,2026-11-12T22:43:11Z,"[REF] searchDisplayBaseTrait - less ctrl, more this"
