@@ -880,3 +880,15 @@ number,merged_at,title
 38084,2026-11-13T01:06:54Z,Move CRM_ACL_ListTest to Civi\Permission\ACLListTest
 38085,2026-11-12T22:43:11Z,"[REF] searchDisplayBaseTrait - less ctrl, more this"
 37957,2026-11-13T08:34:06Z,Settings - Give constant settings a global_name and load them from the environment
+38041,2026-11-13T23:00:58Z,Petition - Pass survey and activity to the confirmation mail tokens
+38071,2026-11-13T22:55:44Z,CRM - Log warning for deprecated functions
+38088,2026-11-13T22:54:12Z,Api4 - Add Extension enable/disable/uninstall actions
+38090,2026-11-13T18:41:23Z,Switch CRM/Utils tests with few api calls to apiv4
+38091,2026-11-13T19:44:54Z,APIv4 - Reject ambiguous pseudoconstant values on write
+38092,2026-11-13T18:14:57Z,"CustomDataTrait - match posted custom field keys by their parsed id, not a prefix regex"
+38093,2026-11-13T20:02:24Z,AGENTS.md - Update test fixture info + minor edits.
+38095,2026-11-13T22:51:21Z,[REF] CustomField - Simpler test cleanup
+38096,2026-11-13T20:18:06Z,(dev/core#6609) CRM_Core_I18n_SchemaTest - Accept omitted default column collation on MariaDB 11
+38097,2026-11-13T20:20:32Z,Switch CRM/Case tests with few api calls to apiv4
+38098,2026-11-13T20:23:22Z,Switch CRM/Core tests with few api calls to apiv4
+38099,2026-11-13T22:50:50Z,Switch CRM/Mailing tests with few api calls to apiv4
