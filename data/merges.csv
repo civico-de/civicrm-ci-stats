@@ -892,3 +892,6 @@ number,merged_at,title
 38097,2026-11-13T20:20:32Z,Switch CRM/Case tests with few api calls to apiv4
 38098,2026-11-13T20:23:22Z,Switch CRM/Core tests with few api calls to apiv4
 38099,2026-11-13T22:50:50Z,Switch CRM/Mailing tests with few api calls to apiv4
+37960,2026-11-14T16:16:19Z,APIv4 - Read param rules once per class instead of building full param info per call
+38023,2026-11-14T16:07:41Z,Keep list column pseudoconstants aligned with values when missing
+38101,2026-11-14T16:01:41Z,Permissioned relationships: respect start and end date
