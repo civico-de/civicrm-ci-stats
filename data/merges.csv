@@ -895,3 +895,6 @@ number,merged_at,title
 37960,2026-11-14T16:16:19Z,APIv4 - Read param rules once per class instead of building full param info per call
 38023,2026-11-14T16:07:41Z,Keep list column pseudoconstants aligned with values when missing
 38101,2026-11-14T16:01:41Z,Permissioned relationships: respect start and end date
+38022,2026-11-14T20:39:21Z,SearchKit - Update displays when changing field alias
+38107,2026-11-14T21:40:09Z,dev/core#6935 - Profile - Leave unbuilt fields out of the registration form
+38108,2026-11-14T20:36:56Z,dev/core#6936 - Avoid PHP warnings on the contact Tags tab
