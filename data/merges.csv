@@ -898,3 +898,4 @@ number,merged_at,title
 38022,2026-11-14T20:39:21Z,SearchKit - Update displays when changing field alias
 38107,2026-11-14T21:40:09Z,dev/core#6935 - Profile - Leave unbuilt fields out of the registration form
 38108,2026-11-14T20:36:56Z,dev/core#6936 - Avoid PHP warnings on the contact Tags tab
+38103,2026-11-15T13:56:47Z,dev/core#6934 - Keep the path when the query of url() holds a fragment
