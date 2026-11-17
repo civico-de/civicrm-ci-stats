@@ -908,3 +908,7 @@ number,merged_at,title
 38113,2026-11-17T01:26:46Z,Tests - Update phpunit version in help text
 38123,2026-11-17T05:27:36Z,Drop unsupported xKerman\Restricted\unserialize library
 38128,2026-11-17T05:22:02Z,UtilsRule - Delete deprecated validContact rule
+38105,2026-11-17T15:17:24Z,Api4 - Use cache to fetch ContactTypes
+38125,2026-11-17T15:15:45Z,Composer - Remove transitive-only packages
+38127,2026-11-17T19:32:44Z,UtilsRule - Inline credit card validation check
+38129,2026-11-17T20:46:24Z,Drop unsupported adrienrn/php-mimetyper library
